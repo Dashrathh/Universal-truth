@@ -29,7 +29,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String, // cloudinary url
-      require: true,
+      required: true,
     },
     coverImage: {
       type: String,
@@ -61,43 +61,42 @@ userSchema.pre("save", async function (next) {
   // Method to check if password is correct
 
 userSchema.methods.isPasswordCorrect = async function (password){
-return await bcrypt.compare(password,this.password);
+return await bcrypt.compare(password.toString(),this.password);
 };
 
  // Method to genete access token
 
 userSchema.methods.generateAccessToken = function () {
 
-  jwt.sign(
-    {
-      _id: this._id,
-      email: this.email,
-      userSchema: this.fullname,
-      fullname: this.fullname
-    },
-
-    process.env.ACCESS_TOKEN_SECRET,
-    
-    {
-      expiresIn: process.env.ACCESS_TOKEN_SECRET
-    }
-  )
-}
-
-  
-   // Method to generate refresh token
-
-userSchema.methods.generateRefreshToken = function () {
-  jwt.sign(
+ return jwt.sign(
     {
       _id: this._id,
       email: this.email,
       userSchema: this.username,
       fullname: this.fullname
     },
+
     process.env.ACCESS_TOKEN_SECRET,
+    
     {
-      expiresIn: process.env.ACCESS_TOKEN_SECRET,
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRY
+    });
+};
+
+  
+   // Method to generate refresh token
+
+userSchema.methods.generateRefreshToken = function () {
+ return jwt.sign(
+    {
+      _id: this._id,
+      email: this.email,
+      userSchema: this.username,
+      fullname: this.fullname
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
     }
   );
 };
