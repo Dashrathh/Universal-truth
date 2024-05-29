@@ -61,11 +61,7 @@ userSchema.pre("save", async function (next) {
   // Method to check if password is correct
 
 userSchema.methods.isPasswordCorrect = async function (password){
-
-  if(typeof password !== 'string' || typeof this.password !== 'string'){
-    throw new Error('data and hash must be string')
-}
-return await bcrypt.compare(String(password,String(this.password)));
+return await bcrypt.compare(password,this.password);
 };
 
  // Method to genete access token
