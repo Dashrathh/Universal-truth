@@ -2,7 +2,8 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
-import { comparision, comparision } from "../models/comparision.model.js";
+import {comparision} from "../models/comparision.model.js"
+import { response } from "express";
 
 
 // Step 
@@ -29,15 +30,54 @@ const creatComparison = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All field are requred")
     }
 
+    
      
+    //  creat new comparison
 
-    const comparision  = new comparision({
+    const newComparison =  comparision.create({
         mordenField,
         ancientField,
         compareText,
         summary
     });
 
-    await comparision
-// 
+    return res.status(200).json(new ApiResponse(200),newComparison ,"new comparison creat successfully")
 }) 
+
+//  get allComparison
+
+ const getAllcomparison =  asyncHandler(async(req,res) =>{
+ 
+       const comparison  = await comparision.find()
+      
+
+       if(!comparision){
+        throw new ApiError(400,"comparison not fatcehd successfully")
+       }
+       return  res.status(200).json(new response(200),comparision,"Fetched all comparison successfully")
+ })
+
+          // 4: Get Single Comparison
+
+          const getSingleComparison = asyncHandler(async(req,res) =>{
+                 
+             const {id} = req.params
+             const comparison = await comparision.findById(id);
+
+                if(!comparison){
+                    throw ApiError(404,"single Comparison not found")
+                }
+
+                return res.status(200).json(new response(200),comparision,"single comparion found successfully");
+          })
+
+                      //  upadate Comparison
+
+               const updateDocument = asyncHandler(async(req,res) =>{
+                co
+               })
+ export
+   { creatComparison,
+    getAllcomparison,
+    getSingleComparison
+}

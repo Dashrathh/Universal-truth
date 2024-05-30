@@ -28,7 +28,7 @@ const userSchema = new Schema(
       trim: true,
     },
     avatar: {
-      type: String, // cloudinary url
+      type: String,       // 
       required: true,
     },
     coverImage: {
@@ -71,9 +71,7 @@ userSchema.methods.generateAccessToken = function () {
  return jwt.sign(
     {
       _id: this._id,
-      email: this.email,
-      userSchema: this.username,
-      fullname: this.fullname
+    
     },
 
     process.env.ACCESS_TOKEN_SECRET,
@@ -90,9 +88,7 @@ userSchema.methods.generateRefreshToken = function () {
  return jwt.sign(
     {
       _id: this._id,
-      email: this.email,
-      userSchema: this.username,
-      fullname: this.fullname
+     
     },
     process.env.REFRESH_TOKEN_SECRET,
     {
