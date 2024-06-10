@@ -18,7 +18,7 @@ import comparisonRouter  from '../src/routes/CompsrisonRoutes.js'
 // import router from "./routes/user.routes.js"
 
 
-im
+
 const app  = express()
 
 app.use(express.static(path.join(__dirname ,'public')));

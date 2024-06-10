@@ -33,7 +33,7 @@ const createComparison = asyncHandler(async(req,res) =>{
        if(!mordenImageLocalPath ||!ancientImageLocalPath ||!mordenWorkingImageLocalPath|| !ancientWorkingImageLocalPath){
         throw new ApiError(400, "All image are required")
 
-        console.log(Error);
+        
        }
 
 //  upload on cloudinary
