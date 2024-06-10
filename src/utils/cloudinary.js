@@ -32,13 +32,15 @@ const uploadOnCloudinary = async (localFilePath) =>{
          // File has been upload successfully
 
          console.log("File is upload on cloudinary:" , response.url);
-
+ 
+          fs.unlinkSync(localFilePath);
          return response;
     
 
     } catch (error) {
         // Hadle error and clean up local file
 
+        console.log(error);
            fs.unlinkSync(localFilePath)
            return response;
     }

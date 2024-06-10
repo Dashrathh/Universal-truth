@@ -1,83 +1,174 @@
+import {comparision} from "../models/comparision.model.js"
+
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-
-import {comparision} from "../models/comparision.model.js"
 import { response } from "express";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
+// Steps
+// 1: get comaprison
+
+const createComparison = asyncHandler(async(req,res) =>{
+    const {mordenField ,ancientField, mordenWorkingModel,ancientWorkingModel,compareText,summary} = req.body;
+   
+    // console.log(mordenField);
+    // const Comparison = await comparision.create({mordenField,ancientField,mordenWorkingModel,ancientWorkingModel,compareText,summary})
+    //  if(!newComparison){
+    //     throw ApiError(400, "Comparison all  failed required ")
+    //  } 
 
 
-// Step 
-// 1: creat comparison
-// 2: validation
-// 3: get all comparison
-// 4: Get Single Comparison
-// 5: upadate Comparison
-// 6: Delete Comparison
-//
 
+  
 
-// 
+//   image upload on cloudinary for mordenFiled and Ancient field
 
-const creatComparison = asyncHandler(async (req, res) => {
+ const mordenImageLocalPath = req.file?.mordenImage?.[0]?.path;
+ const ancientImageLocalPath = req.file?.ancientImage?.[0]?.path;
+ const mordenWorkingImageLocalPath = req.file?.ancientImage?.[0]?.path;
+ const ancientWorkingImageLocalPath = req.file?.ancientImage?.[0]?.path;
+
+//   check if 
+
+       if(!mordenImageLocalPath ||!ancientImageLocalPath ||!mordenWorkingImageLocalPath|| !ancientWorkingImageLocalPath){
+        throw new ApiError(400, "All image are required")
+
+        console.log(Error);
+       }
+
+//  upload on cloudinary
+
+const mordenImage = await uploadOnCloudinary(mordenImageLocalPath);
+const ancientImage = await uploadOnCloudinary(ancientImageLocalPath);
+const mordenWorkingImage= await uploadOnCloudinary(mordenWorkingImageLocalPath);
+const ancientWorkingImage = await uploadOnCloudinary(ancientWorkingImageLocalPath);
+
+   
+
+    if(!mordenImage|| !ancientImage || !mordenWorkingImage || !ancientWorkingImage){
+        throw new ApiError(400, " All immage file are required")
+    }
+    const newComparison = await comparision.create({
+
+        mordenField,
+        mordenImage: mordenImage.url,
+        ancientField,
+        ancientImage:ancientImage.url,
+        mordenWorkingModel,
+        mordenWorkingImage:mordenWorkingImage.url,
+        ancientWorkingModel,
+        ancientWorkingImage:ancientWorkingImage.url,
+        compareText,
+        summary,
+        owener: req.user._id,
     
-    // 1: creat comparison
+    });
+    
+    if(!newComparison){
+     
+        throw new ApiError(400 ,"comparison creation failed")
+    }
+return res.status(201).json(ApiResponse(200),newComparison,"Compari creat successfully");
 
-    const { mordenField, ancientField, compareText, summary } = req.body
 
-    //    2: validation
+})
 
-    if (!mordenField || !ancientField || !compareText || !summary) {
-        throw new ApiError(400, "All field are requred")
+//  Entry in db
+
+
+
+//   get all comparison
+
+const getAllComparisons = asyncHandler(async(req,res) =>{
+    const comaprison = await comparision.find();
+    
+    if(!comaprison){
+        throw ApiError(500 ,"Comparison not found")
     }
 
-    
-     
-    //  creat new comparison
+    return res(200).json(ApiResponse(200),comaprison, "Comparison find successfully !")
+});
 
-    const newComparison =  comparision.create({
-        mordenField,
-        ancientField,
-        compareText,
-        summary
-    });
+// 3:  get comparison by ID
 
-    return res.status(200).json(new ApiResponse(200),newComparison ,"new comparison creat successfully")
-}) 
+   const getComparisonById =  asyncHandler(async(req,res) =>{
+     const{comparisionId} = req.params
+     const comaprison = await comparision.findById(comparisionId);
 
-//  get allComparison
+     if(!comaprison){
+        throw ApiError(400, "comparion not found")
+     }
 
- const getAllcomparison =  asyncHandler(async(req,res) =>{
+     return res.status(200).json(ApiResponse(200),comaprison ,"single comparion found successfully")
+   });
  
-       const comparison  = await comparision.find()
-      
 
-       if(!comparision){
-        throw new ApiError(400,"comparison not fatcehd successfully")
-       }
-       return  res.status(200).json(new response(200),comparision,"Fetched all comparison successfully")
- })
 
-          // 4: Get Single Comparison
 
-          const getSingleComparison = asyncHandler(async(req,res) =>{
-                 
-             const {id} = req.params
-             const comparison = await comparision.findById(id);
 
-                if(!comparison){
-                    throw ApiError(404,"single Comparison not found")
-                }
+// 4. Update Comparison by ID
 
-                return res.status(200).json(new response(200),comparision,"single comparion found successfully");
-          })
+const updateComparisonById = asyncHandler(async (req, res) => {
+    const { comparisonId } = req.params;
+    const { 
+        mordenField, 
+        ancientField, 
+        mordenWorkingModel, 
+        ancientWorkingModel, 
+        compareText, 
+        summary 
+    } = req.body;
 
-                      //  upadate Comparison
+    const files = req.files;
 
-               const updateDocument = asyncHandler(async(req,res) =>{
-                co
-               })
- export
-   { creatComparison,
-    getAllcomparison,
-    getSingleComparison
-}
+    const updatedData = { mordenField, ancientField, mordenWorkingModel, ancientWorkingModel, compareText, summary };
+
+    // If there are new images to update, upload them to Cloudinary and add their URLs to the updatedData object
+    if (mordenImageLocalPath) {
+        const mordenImage = await uploadOnCloudinary(files.mordenImage[0].path);
+        updatedData.mordenImage = mordenImage.url;
+    }
+    if (ancientImageLocalPath) {
+        const ancientImage = await uploadOnCloudinary(files.ancientImage[0].path);
+        updatedData.ancientImage = ancientImage.url;
+    }
+    if (mordenWorkingImageLocalPath) {
+        const mordenWorkingImage = await uploadOnCloudinary(files.mordenWorkingImage[0].path);
+        updatedData.mordenWorkingImage = mordenWorkingImage.url;
+    }
+    if (ancientImageLocalPath) {
+        const ancientWorkingImage = await uploadOnCloudinary(files.ancientWorkingImage[0].path);
+        updatedData.ancientWorkingImage = ancientWorkingImage.url;
+    }
+
+    const updatedComparison = await comparision.findByIdAndUpdate(comparisonId, updatedData, { new: true });
+
+    if (!updatedComparison) {
+        throw new ApiError(400, "Comparison update failed");
+    }
+
+    return res.status(200).json(ApiResponse(200, updatedComparison, "Comparison updated successfully"));
+}); 
+
+
+    //     delete comparison
+
+    const deleteCompariosn = asyncHandler(async(req,res) =>{
+        const {comparisionId} = req.params
+        const deletedComparison = comparision.findByIdAndDelete(comparisionId)
+
+        if(!deleteCompariosn){
+            throw new ApiError(400, "delete comparison failed")
+        }
+
+        return res.status(200).json(new ApiResponse(200),deleteCompariosn,"Comparison deleted successfully")
+    })
+
+export{
+    createComparison,
+    getAllComparisons,
+    getComparisonById,
+    updateComparisonById,
+    deleteCompariosn
+};
+

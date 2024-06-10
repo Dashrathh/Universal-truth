@@ -1,0 +1,22 @@
+<section class="campare ">
+    <div class="campare-wraper">
+      <% for (let i = 0; i < cardData.length; i++) { %>
+        <div class="campare-slide ">
+          <a href="{% url 'card_view' card_id=cardData[i].id %}">
+            <div class="com">
+              <div class="com-image">
+                <img src="<%= cardData[i].image %>" alt="">
+              </div>
+              <div class="com_content">
+                <span class="com_title"><%= cardData[i].title %></span>
+                <p class="com_text">
+                  <%= cardData[i].description %>
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </section>      
+  

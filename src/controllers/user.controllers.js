@@ -5,6 +5,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import jwt from "jsonwebtoken";
 import { response } from "express";
+// import { AncientBook } from "../models/Book.model.js";
 
 // Create access and refresh token generator function
 
@@ -12,8 +13,10 @@ import { response } from "express";
 const generateAccessAndRefreshToken = async (userId) => {
   try {
     const user = await User.findById(userId);
-    const accessToken = user.generateAccessToken();
-    const refreshToken = user.generateRefreshToken();
+    const accessToken = await user.generateAccessToken();
+    const refreshToken = await user.generateRefreshToken();
+
+    console.log(refreshToken);
 
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false});
@@ -35,8 +38,6 @@ const generateAccessAndRefreshToken = async (userId) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const { fullname, username, email, password } = req.body;
-
-
 
   // Validation - not empty
 
@@ -77,6 +78,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const avatar = await uploadOnCloudinary(avatarLocalPath);
   const coverImage = coverImageLocalPath ? await uploadOnCloudinary(coverImageLocalPath) : null;
 
+  console.log(avatar);
   // Check if avatar upload failed
 
   if (!avatar) {
@@ -93,6 +95,10 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     username: username.toLowerCase(),
   });
+ 
+  // accessToken and refreshToken call back
+    
+  const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id);
 
   // Check for user creation
 
@@ -130,6 +136,8 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({
     $or: [{ username }, { email }],
   });
+
+
 
   if (!user) {
     throw new ApiError(404, "User does not exist");

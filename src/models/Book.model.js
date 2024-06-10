@@ -11,17 +11,32 @@ const BookSchema = new Schema(
             type:String,
             required:true
         },
+        BookImage:{
+            type:String,
+            required:true
+        },
+
         Ancient_invention:{
             type:String,
             required:true
         },
+        Ancient_inventionImage:{
+            type:String,
+            required:true
+        },
+
         description:{
             type:String,
             required:true
         },
+        Image:{
+            type:String,
+            required:true
+        }, 
+        
         Bookrefer:[
             {
-                type:{
+                Image:{
                     type:String, // Typw of evidence, e.g., "photo"
                     required:true
                 },

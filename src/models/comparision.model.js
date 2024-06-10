@@ -6,19 +6,49 @@ const CamparisonSchema = new Schema(
     {
         mordenField:{
             type: String,
-            require: true
+            required: true
         },
+          mordenImage:{
+          type:String,
+          required:true
+      },
+        
         ancientField:{
             type: String,
-            require: true
+            required: true   // cloudinary url
         },
+
+        ancientImage:{
+         type:String,
+         required:true       // cloudinary url
+        },
+
+        mordenWorkingModel:{
+            type:String,
+            required:true
+        },
+
+        mordenWorkingImage:{
+            type:String,
+            required:true
+        },
+        ancientWorkingModel:{
+            type:String,
+            required:true
+        },
+
+        ancientWorkingImage:{
+            type:String,
+            required:true
+        },
+        
          compareText:{
               type:String,
-              require:true
+              required:true
          },
          summary:{
           type:String,
-          require:true
+          required:true
          },
         },
 

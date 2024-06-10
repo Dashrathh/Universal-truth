@@ -9,24 +9,33 @@ const ScientistSchema = new Schema(
     
         name:{
             type: String,
-            require:true
+            required:true
         },
 
         birth_year:{
             type:Number,
-            require: true
+            required: true
         },
         death_year:{
             type:Number,
-            require:true
+        
         },
-        thetheir_work:{
+        personalLife:{
             type:String,
-            require:true
+            required:true
+        },
+
+        their_work:{
+            type:String,
+            required:true
         },
         achivement:{
             type:String,
-            require:false
+            required:false
+        },
+        achivementImage:{
+            type:String,
+            required:true
         },
 
          evidence:[
