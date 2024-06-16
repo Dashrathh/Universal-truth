@@ -23,11 +23,16 @@ const createComparison = asyncHandler(async(req,res) =>{
 
 //   image upload on cloudinary for mordenFiled and Ancient field
 
- const mordenImageLocalPath = req.file?.mordenImage?.[0]?.path;
- const ancientImageLocalPath = req.file?.ancientImage?.[0]?.path;
- const mordenWorkingImageLocalPath = req.file?.ancientImage?.[0]?.path;
- const ancientWorkingImageLocalPath = req.file?.ancientImage?.[0]?.path;
+ const mordenImageLocalPath = req.files?.mordenImage?.[0]?.path;
+ const ancientImageLocalPath = req.files?.ancientImage?.[0]?.path;
+ const mordenWorkingImageLocalPath = req.files?.mordenWorkingImage?.[0]?.path;
+ const ancientWorkingImageLocalPath = req.files?.ancientWorkingImage?.[0]?.path;
 
+
+ console.log(mordenImageLocalPath);
+ console.log(ancientImageLocalPath);
+ console.log(mordenWorkingImageLocalPath);
+ console.log("ancientWorkingImageLocalPath");
 //   check if 
 
        if(!mordenImageLocalPath ||!ancientImageLocalPath ||!mordenWorkingImageLocalPath|| !ancientWorkingImageLocalPath){
@@ -43,7 +48,7 @@ const ancientImage = await uploadOnCloudinary(ancientImageLocalPath);
 const mordenWorkingImage= await uploadOnCloudinary(mordenWorkingImageLocalPath);
 const ancientWorkingImage = await uploadOnCloudinary(ancientWorkingImageLocalPath);
 
-   
+   console.log(mordenImage);
 
     if(!mordenImage|| !ancientImage || !mordenWorkingImage || !ancientWorkingImage){
         throw new ApiError(400, " All immage file are required")
