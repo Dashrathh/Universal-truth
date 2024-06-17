@@ -6,7 +6,7 @@ import {
     getComparisonById,
     updateComparisonById,
     deleteCompariosn
-} from "../controllers/comparison.controller.js";
+} from "../controllers/comparisonController.js";
 
 import { upload } from "../middlewares/multer.middleare.js"
 
@@ -17,7 +17,7 @@ import router from "../routes/user.routes.js";
 // const ro = router();
 
 //  creat new camparion router
-router.route("/comparison")
+router.route("/createComparison")
     .post(upload.fields([
         {
             name: "mordenImage",
@@ -66,8 +66,13 @@ router.route("/:comparisonId")
     ]), updateComparisonById)
 
 //    Route to delete a comparison by id
-
+router.route("/comparison/:comparisonId")
+    .get(getComparisonById);
+    
 router.route("/:comparisonId")
     .delete(deleteCompariosn)
+    
+    router.route('/',getComparisonById)
+
 
 export default router

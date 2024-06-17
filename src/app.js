@@ -1,63 +1,84 @@
-
-   import { fileURLToPath } from "url"
-//    import path from "path"
-
-   const __filename = fileURLToPath(import.meta.url)
-   const __dirname = path.dirname(__filename);
-
-
-
-import express from "express"
-import cors from "cors"
-import cookiePareser from "cookie-parser"
-import UserRouter from './routes/user.routes.js'
+import { fileURLToPath } from "url";
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 import path from "path";
+import UserRouter from './routes/user.routes.js'
+import "ejs" 
+import comparisonRouter from './routes/CompsrisonRoutes.js'
 import { title } from "process";
-import comparisonRouter  from '../src/routes/CompsrisonRoutes.js'
+// import { title } from "process";
 
-// import router from "./routes/user.routes.js"
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+const app = express();
 
-
-const app  = express()
-
-app.use(express.static(path.join(__dirname ,'public')));
-
+// Middleware
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-
-    origin:process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN,
     credentials: true
-}))
+}));
+app.use(express.json({ limit: "16kb" }));
+app.use(express.urlencoded({ extended: true, limit: "16kb" }));
+app.use(cookieParser());
 
-// app.use(express.json({limit: "16kb"}))
-// app.use(express.urlencoded({extended: true, limit: "16kb"}))
-// app.use(express.static("public"))
-// app.use(cookiePareser())
+// View Engine Setup (EJS)
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
+// Sample route
 
-// Set Ejs as the templating engine
+app.get('/', (req, res) => {
+    const cards = [
+        { id: 1, title: "Maharshi Panini", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person"  },
+        { id: 2, title: "Morden compare", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image:"https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
+        { id: 3, title: "Morden with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", images: '/images/image1.png'},
+        { id: 3, title: "Morden with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", images: '/images/image1.png'},
 
-app.set('view engine','ejs');
-app.set('views',path.join(path.dirname(''),'views'))
+        // Add more card objects as needed
+    ];
+    const scientists = [
+        { id: 1, name: "Albert Einstein", contribution: "Theory of Relativity", image: "einstein.png" },
+        { id: 2, name: "Marie Curie", contribution: "Radioactivity", image: "curie.png" },
+        // Add more scientist objects as needed
+    ];
+     const books = [
+        { id: 1, title: "Book Title 1", author: "Author 1", image: "book1.png" },
+        { id: 2, title: "Book Title 2", author: "Author 2", image: "book2.png" },
+        // Add more book objects as needed
+    ];
+    
 
-//  sample routes 
+    res.render('UTindex', {
+        title: 'Universaltruth',
+        cards :cards,
+        scientists:scientists,
+        books:books
+        
 
-// app.get('/', (req, res) => {
-//     res.render('UTindex.ejs', {
-//         title: 'The Universal Truth',
-//     });
-// });
+        
+    });
 
+    console.log('GET / route hit, rendering UTindex');
 
-app.get('/',(req,res) =>{
-    res.render('UTindex.ejs', {card:'1',title:'The universal truth'})
+});
+
+app.get('/' ,(req,res) =>{
+    res.render('camparisonCotroller' ,
+         {card :1,
+         title: 'Universal truth great think'})
+
+    console.log('GET /compare route hit, rendering compare');
 })
-//   routes declaration
 
-app.use('/api/v1/users', UserRouter)
+  app.use('/card',)
 
-//  comparison router
+// API Routes
+app.use('/api/v1/users', UserRouter);
+// Comparison Router
+app.use('/api/v1/comparisons', comparisonRouter); 
 
-app.use('/comparison',comparisonRouter)
-// https:// localhost:3000/api/v1/users/register
-export {app} 
+// Exporting app
+export { app };

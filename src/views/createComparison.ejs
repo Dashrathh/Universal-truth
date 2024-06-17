@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison</title>
+    <style>
+        /* public/styles.css */
+        .comparison-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .comparison-section {
+            margin-bottom: 20px;
+        }
+        .comparison-section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .comparison-section p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .comparison-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <% comparison-card.forEach(comparison => { %>
+        <div class="comparison-card">
+            <div class="comparison-section">
+                <h3>Modern Field: <%= comparison.mordenField %></h3>
+                <img src="<%= comparison.mordenImage %>" alt="Modern Field Image">
+            </div>
+            <div class="comparison-section">
+                <h3>Ancient Field: <%= comparison.ancientField %></h3>
+                <img src="<%= comparison.ancientImage %>" alt="Ancient Field Image">
+            </div>
+            <div class="comparison-section">
+                <h3>Modern Working Model</h3>
+                <p><%= comparison.mordenWorkingModel %></p>
+                <img src="<%= comparison.mordenWorkingImage %>" alt="Modern Working Model Image">
+            </div>
+            <div class="comparison-section">
+                <h3>Ancient Working Model</h3>
+                <p><%= comparison.ancientWorkingModel %></p>
+                <img src="<%= comparison.ancientWorkingImage %>" alt="Ancient Working Model Image">
+            </div>
+            <div class="comparison-section">
+                <h3>Comparison</h3>
+                <p><%= comparison.compareText %></p>
+            </div>
+            <div class="comparison-section">
+                <h3>Summary</h3>
+                <p><%= comparison.summary %></p>
+            </div>
+        </div>
+    <% }); %>
+</body>
+</html>

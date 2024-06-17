@@ -1,3 +1,5 @@
+
+
 import {comparision} from "../models/comparision.model.js"
 
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -8,7 +10,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 // Steps
 // 1: get comaprison
 
-const createComparison = asyncHandler(async(req,res) =>{
+const createComparison  = asyncHandler(async(req,res) =>{
     const {mordenField ,ancientField, mordenWorkingModel,ancientWorkingModel,compareText,summary} = req.body;
    
     // console.log(mordenField);
@@ -17,10 +19,7 @@ const createComparison = asyncHandler(async(req,res) =>{
     //     throw ApiError(400, "Comparison all  failed required ")
     //  } 
 
-
-
-  
-
+    
 //   image upload on cloudinary for mordenFiled and Ancient field
 
  const mordenImageLocalPath = req.files?.mordenImage?.[0]?.path;
@@ -32,7 +31,7 @@ const createComparison = asyncHandler(async(req,res) =>{
  console.log(mordenImageLocalPath);
  console.log(ancientImageLocalPath);
  console.log(mordenWorkingImageLocalPath);
- console.log("ancientWorkingImageLocalPath");
+ console.log(ancientWorkingImageLocalPath);
 //   check if 
 
        if(!mordenImageLocalPath ||!ancientImageLocalPath ||!mordenWorkingImageLocalPath|| !ancientWorkingImageLocalPath){
@@ -65,22 +64,24 @@ const ancientWorkingImage = await uploadOnCloudinary(ancientWorkingImageLocalPat
         ancientWorkingImage:ancientWorkingImage.url,
         compareText,
         summary,
-        owener: req.user._id,
+        owener: req.userid,
     
     });
+    
+   
+    return res.status(200).json(new ApiResponse(200), createComparison, "All creat successfuly")
     
     if(!newComparison){
      
         throw new ApiError(400 ,"comparison creation failed")
     }
-return res.status(201).json(ApiResponse(200),newComparison,"Compari creat successfully");
 
-
+    
+    
+    // res.render('createComparison', { comparisons: [newComparison], message: "Comparison created successfully" });   
 })
 
 //  Entry in db
-
-
 
 //   get all comparison
 
@@ -91,7 +92,7 @@ const getAllComparisons = asyncHandler(async(req,res) =>{
         throw ApiError(500 ,"Comparison not found")
     }
 
-    return res(200).json(ApiResponse(200),comaprison, "Comparison find successfully !")
+    res.render('getComparisonById', { comaprison, message: "Comparison found successfully" });
 });
 
 // 3:  get comparison by ID
@@ -104,10 +105,9 @@ const getAllComparisons = asyncHandler(async(req,res) =>{
         throw ApiError(400, "comparion not found")
      }
 
-     return res.status(200).json(ApiResponse(200),comaprison ,"single comparion found successfully")
-   });
+     res.render('createComparison', { comaprison, message: "Comparison found successfully" });
+    });
  
-
 
 
 
@@ -152,7 +152,7 @@ const updateComparisonById = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Comparison update failed");
     }
 
-    return res.status(200).json(ApiResponse(200, updatedComparison, "Comparison updated successfully"));
+    res.render('updateComparison', { comparison: updatedComparison, message: "Comparison updated successfully" });
 }); 
 
 

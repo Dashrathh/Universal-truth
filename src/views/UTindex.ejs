@@ -1,11 +1,8 @@
-<!-- views/index.ejs -->
 <%- include('./partials/header') %>
 
-
-
-<link rel="stylesheet" href="/public/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 <section class="background">
-    <img src="/public/image/reaserch.png" class="r-image" alt="Research Image">
+    <img src="" class="r-image" alt="Research Image">
 </section>
 
 <section class="info-container">
@@ -15,7 +12,7 @@
             <span class="span">It's time for a great comeback</span>
             <p class="text">Explore Indian Mystery and Harsh Truth</p>
         </div>
-        <button class="btn-primary">Explore Mystery <style></style></button>
+        <button class="btn-primary">Explore Mystery</button>
     </div>
 </section>
 
@@ -31,10 +28,10 @@
     <div class="compare-wrapper">
         <% for (let i = 0; i < cards.length; i++) { %>
             <div class="compare-slide">
-                <a href="/card/<%= cards[i].id %>" id="<%= cards[i].id %>">
+                <a href="/card" id="<%= cards[i].id %>">
                     <div class="com">
                         <div class="com-image">
-                            <img src="<%= cards[i].image %>" alt="">
+                            <img src="<%= cards[i].image %>" alt="<%= cards[i].title %> Image">
                         </div>
                         <div class="com_content">
                             <span class="com_title"><%= cards[i].title %></span>
@@ -46,12 +43,11 @@
         <% } %>
     </div>
     
-</div>
+</section>
 <div class="button-s">
     <span class="btn-icon" id="left-btn">&#129128;</span>
     <span class="btn-icon" id="right-btn">&#129130;</span>
 </div>
-</section>
 
 <!-- Ancient Scientists Section -->
 <div class="introduction-2">
@@ -109,4 +105,4 @@
     </div>
 </section>
 
-<%- include('./partials/footer') %>
+<%-include('./partials/footer') %>
