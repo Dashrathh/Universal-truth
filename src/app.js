@@ -73,7 +73,16 @@ app.get('/' ,(req,res) =>{
     console.log('GET /compare route hit, rendering compare');
 })
 
-  app.use('/card',)
+app.get('/card/:id', (req, res) => {
+    const cardId = req.params.id;
+    const card = card.find(c => c.id == cardId);
+
+    if (card) {
+        res.render('card', { card });
+    } else {
+        res.status(404).send('Card not found');
+    }
+});
 
 // API Routes
 app.use('/api/v1/users', UserRouter);

@@ -105,7 +105,7 @@ const getAllComparisons = asyncHandler(async(req,res) =>{
         throw ApiError(400, "comparion not found")
      }
 
-     res.render('createComparison', { comaprison, message: "Comparison found successfully" });
+     res.render('createComparison');
     });
  
 
