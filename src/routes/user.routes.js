@@ -5,13 +5,11 @@ import {
   registerUser,
 } from "../controllers/user.controllers.js";
 import { upload } from "../middlewares/multer.middleare.js";
-
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-// Example route using the upload middleware
-
+// * Register a new user
 router.route("/register").post(
   upload.fields([
     {
@@ -26,12 +24,14 @@ router.route("/register").post(
   ]),
   registerUser,
 );
+
+// * Login user
 router.route("/login").post(loginUser);
 
+// * Logout user
 router.route("/logout").post(verifyJWT, logoutUser);
 
-// here router are do route method with use post (logout) .(verifying middleware before logout)
-
+// * Refresh token
 router.route("/refresh-token").post();
 
 export default router;

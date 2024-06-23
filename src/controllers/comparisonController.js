@@ -1,13 +1,10 @@
 import { comparision } from "../models/comparision.model.js";
-
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { response } from "express";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
-// Steps
-// 1: get comaprison
 
+// * 1: get comaprison
 const createComparison = asyncHandler(async (req, res) => {
   const {
     mordenField,
@@ -17,12 +14,6 @@ const createComparison = asyncHandler(async (req, res) => {
     compareText,
     summary,
   } = req.body;
-
-  console.log(req.body);
-  // const Comparison = await comparision.create({mordenField,ancientField,mordenWorkingModel,ancientWorkingModel,compareText,summary})
-  //  if(!newComparison){
-  //     throw ApiError(400, "Comparison all  failed required ")
-  //  }
 
   //   image upload on cloudinary for mordenFiled and Ancient field
 
@@ -36,7 +27,6 @@ const createComparison = asyncHandler(async (req, res) => {
   console.log(ancientImageLocalPath);
   console.log(mordenWorkingImageLocalPath);
   console.log(ancientWorkingImageLocalPath);
-  //   check if
 
   if (
     !mordenImageLocalPath ||
@@ -48,17 +38,14 @@ const createComparison = asyncHandler(async (req, res) => {
   }
 
   //  upload on cloudinary
-
   const mordenImage = await uploadOnCloudinary(mordenImageLocalPath);
   const ancientImage = await uploadOnCloudinary(ancientImageLocalPath);
   const mordenWorkingImage = await uploadOnCloudinary(
-    mordenWorkingImageLocalPath,
+    mordenWorkingImageLocalPath
   );
   const ancientWorkingImage = await uploadOnCloudinary(
-    ancientWorkingImageLocalPath,
+    ancientWorkingImageLocalPath
   );
-
-  console.log(mordenImage);
 
   if (
     !mordenImage ||
@@ -85,19 +72,10 @@ const createComparison = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(new ApiResponse(200), createComparison, "All creat successfuly");
-
-  if (!newComparison) {
-    throw new ApiError(400, "comparison creation failed");
-  }
-
-  // res.render('createComparison', { comparisons: [newComparison], message: "Comparison created successfully" });
 });
 
-//  Entry in db
-
-//   get all comparison
-
-const getAllComparisons = asyncHandler(async (req, res) => {
+// * 2: get all comparison
+const getAllComparisons = asyncHandler(async (_req, res) => {
   const comaprison = await comparision.find();
 
   if (!comaprison) {
@@ -112,8 +90,7 @@ const getAllComparisons = asyncHandler(async (req, res) => {
   });
 });
 
-// 3:  get comparison by ID
-
+// * 3: get comparison by ID
 const getComparisonById = asyncHandler(async (req, res) => {
   const { comparisionId } = req.params;
   const comaprison = await comparision.findById(comparisionId);
@@ -125,8 +102,7 @@ const getComparisonById = asyncHandler(async (req, res) => {
   res.render("createComparison");
 });
 
-// 4. Update Comparison by ID
-
+// * 4. Update Comparison by ID
 const updateComparisonById = asyncHandler(async (req, res) => {
   const { comparisonId } = req.params;
   const {
@@ -160,13 +136,13 @@ const updateComparisonById = asyncHandler(async (req, res) => {
   }
   if (mordenWorkingImageLocalPath) {
     const mordenWorkingImage = await uploadOnCloudinary(
-      files.mordenWorkingImage[0].path,
+      files.mordenWorkingImage[0].path
     );
     updatedData.mordenWorkingImage = mordenWorkingImage.url;
   }
   if (ancientImageLocalPath) {
     const ancientWorkingImage = await uploadOnCloudinary(
-      files.ancientWorkingImage[0].path,
+      files.ancientWorkingImage[0].path
     );
     updatedData.ancientWorkingImage = ancientWorkingImage.url;
   }
@@ -174,7 +150,7 @@ const updateComparisonById = asyncHandler(async (req, res) => {
   const updatedComparison = await comparision.findByIdAndUpdate(
     comparisonId,
     updatedData,
-    { new: true },
+    { new: true }
   );
 
   if (!updatedComparison) {
@@ -187,13 +163,12 @@ const updateComparisonById = asyncHandler(async (req, res) => {
   });
 });
 
-//     delete comparison
-
+// * 5: delete comparison
 const deleteCompariosn = asyncHandler(async (req, res) => {
   const { comparisionId } = req.params;
   const deletedComparison = comparision.findByIdAndDelete(comparisionId);
 
-  if (!deleteCompariosn) {
+  if (!deletedComparison) {
     throw new ApiError(400, "delete comparison failed");
   }
 
@@ -201,8 +176,8 @@ const deleteCompariosn = asyncHandler(async (req, res) => {
     .status(200)
     .json(
       new ApiResponse(200),
-      deleteCompariosn,
-      "Comparison deleted successfully",
+      deletedComparison,
+      "Comparison deleted successfully"
     );
 });
 

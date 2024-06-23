@@ -1,5 +1,3 @@
-import { Router } from "express";
-
 import {
   createComparison,
   getAllComparisons,
@@ -7,15 +5,10 @@ import {
   updateComparisonById,
   deleteCompariosn,
 } from "../controllers/comparisonController.js";
-
 import { upload } from "../middlewares/multer.middleare.js";
-
-import userRouter from "../routes/user.routes.js";
 import router from "../routes/user.routes.js";
 
-// const ro = router();
-
-//  creat new camparion router
+// * creat new camparion router
 router.route("/createComparison").post(
   upload.fields([
     {
@@ -35,15 +28,13 @@ router.route("/createComparison").post(
       maxCount: 1,
     },
   ]),
-  createComparison,
+  createComparison
 );
 
-//  route to get all comparison
-
+// * route to get all comparison
 router.route("/").get(getAllComparisons);
 
-// route upadate comparion
-
+// * route upadate comparion
 router.route("/:comparisonId").put(
   upload.fields([
     {
@@ -63,14 +54,16 @@ router.route("/:comparisonId").put(
       maxCount: 1,
     },
   ]),
-  updateComparisonById,
+  updateComparisonById
 );
 
-//    Route to delete a comparison by id
+// * Route to delete a comparison by id
 router.route("/comparison/:comparisonId").get(getComparisonById);
 
+// * Route to delete a comparison by id
 router.route("/:comparisonId").delete(deleteCompariosn);
 
+// * Route to get a comparison by id
 router.route("/", getComparisonById);
 
 export default router;
