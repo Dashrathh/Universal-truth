@@ -1,36 +1,37 @@
-import { Router } from 'express';
-import {loginUser,logoutUser,registerUser} from "../controllers/user.controllers.js"
-import { upload } from '../middlewares/multer.middleare.js';
+import { Router } from "express";
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+} from "../controllers/user.controllers.js";
+import { upload } from "../middlewares/multer.middleare.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 
-import {verifyJWT} from "../middlewares/auth.middleware.js"
+const router = Router();
 
-const router = Router()
-
-
-// Example route using the upload middleware
-
+// * Register a new user
 router.route("/register").post(
+  upload.fields([
+    {
+      name: "avatar",
+      maxCount: 1,
+    },
 
+    {
+      name: "coverImage",
+      maxCount: 1,
+    },
+  ]),
+  registerUser,
+);
 
-upload.fields([
-  {
-    name:"avatar" ,
-    maxCount:1
-  },
+// * Login user
+router.route("/login").post(loginUser);
 
-  {
-    name: "coverImage",
-    maxCount:1
-  },
+// * Logout user
+router.route("/logout").post(verifyJWT, logoutUser);
 
-]),
-    registerUser)
-    router.route("/login").post(loginUser)
+// * Refresh token
+router.route("/refresh-token").post();
 
-    router.route("/logout").post(verifyJWT,logoutUser)
-
-    // here router are do route method with use post (logout) .(verifying middleware before logout)
-    
-    router.route("/refresh-token").post()
-
-    export default router
+export default router;

@@ -1,0 +1,21 @@
+<%- include('./partials/header') %>
+
+<link rel="stylesheet" href="/css/card.css" />
+
+<section class="compare">
+  <div class="compare-wrapper">
+    <div class="com">
+      <div class="com-image">
+        <img src="<%= card.mordenImage %>" alt="mordenImage" />
+      </div>
+    </div>
+
+    <div>
+      <div class="com_content">
+        <span class="com_title"><%= card.ancientField %></span>
+        <p class="com_text"><%= card.summary %></p>
+      </div>
+    </div>
+ 
+  </div>
+</section>
