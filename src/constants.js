@@ -1,1 +1,1 @@
-export const  DB_NAME = "CONCEPT"
+export const DB_NAME = "Universal-truth";
