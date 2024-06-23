@@ -66,4 +66,38 @@ router.route("/:comparisonId").delete(deleteCompariosn);
 // * Route to get a comparison by id
 router.route("/", getComparisonById);
 
+<<<<<<< Updated upstream
 export default router;
+=======
+router.route("/:comparisonId")
+    .put(upload.fields([
+        {
+            name: "mordenImage",
+            maxCount: 1
+        },
+        {
+            name: "ancientImage",
+            maxCount: 1
+        },
+        {
+            name: "mordenWorkingImage",
+            maxCount: 1
+        },
+        {
+            name: "ancientWorkingImage",
+            maxCount: 1
+        }
+    ]), updateComparisonById)
+
+//    Route to delete a comparison by id
+router.route("/comparison/:comparisonId")
+    .get(getComparisonById);
+    
+router.route("/:comparisonId")
+    .delete(deleteCompariosn)``
+    
+    router.route('/',getComparisonById)
+
+
+export default router
+>>>>>>> Stashed changes

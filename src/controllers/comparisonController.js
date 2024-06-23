@@ -78,9 +78,15 @@ const createComparison = asyncHandler(async (req, res) => {
 const getAllComparisons = asyncHandler(async (_req, res) => {
   const comaprison = await comparision.find();
 
+<<<<<<< Updated upstream
   if (!comaprison) {
     throw ApiError(500, "Comparison not found");
   }
+=======
+   const getComparisonById =  asyncHandler(async(req,res) =>{
+     const{comparisionId} = req.params;
+     const comaprison = await comparision.findById(comparisionId);
+>>>>>>> Stashed changes
 
   console.log(comaprison);
 
