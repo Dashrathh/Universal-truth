@@ -3,25 +3,13 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
-<<<<<<< Updated upstream
 import UserRouter from "./routes/user.routes.js";
-import "ejs";
-import comparisonRouter from "./routes/CompsrisonRoutes.js";
-import { title } from "process";
-import { comparision } from "./models/comparision.model.js";
-=======
-import UserRouter from './routes/user.routes.js'
-import "ejs"
-import comparisonRouter from './routes/CompsrisonRoutes.js'
-import { title } from "process";
-import { verify } from "crypto";
->>>>>>> Stashed changes
-// import { title } from "process";
+import comparisonRouter from "./routes/CompsrisonRoutes.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = express();verify
+const app = express();
 
 // Middleware
 app.use(express.static(path.join(__dirname, "public")));
@@ -29,7 +17,7 @@ app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
-  }),
+  })
 );
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
@@ -40,93 +28,21 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Sample route
-
-<<<<<<< Updated upstream
-app.get("/", async (req, res) => {
-  const cards = await comparision.find();
-
-  if (!cards) {
-    throw ApiError(500, "Comparison not found");
-  }
-
-  // const cards = [
-  //   {
-  //     id: 1,
-  //     title: "Maharshi Panini",
-  //     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  //     image:
-  //       "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Morden compare",
-  //     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  //     image:
-  //       "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Morden with ancient",
-  //     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  //     images: "/images/image1.png",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Morden with ancient",
-  //     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  //     images: "/images/image1.png",
-  //   },
-
-  //   // Add more card objects as needed
-  // ];
-=======
-app.get('/', (req, res) => {
-    const cards = [
-        { id: 1, title: "Maharshi Panini", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
-        { id: 2, title: "Morden compare", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
-        { id: 3, title: "Morden with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", images: '/images/image1.png' },
-        { id: 3, title: "Morden with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", images: '/images/image1.png' },
-
-        // Add more card objects as needed
-    ];
-    const scientists = [
-        { id: 1, name: "Albert Einstein", contribution: "Theory of Relativity", image: "einstein.png" },
-        { id: 2, name: "Marie Curie", contribution: "Radioactivity", image: "curie.png" },
-        // Add more scientist objects as needed
-    ];
-    const books = [
-        { id: 1, title: "Book Title 1", author: "Author 1", image: "book1.png" },
-        { id: 2, title: "Book Title 2", author: "Author 2", image: "book2.png" },
-        // Add more book objects as needed
-    ];
-
-
-    res.render('UTindex', {
-        title: 'Universaltruth',
-        cards: cards,
-        scientists: scientists,
-        books: books
-
-
-
-    });
->>>>>>> Stashed changes
+app.get("/", (req, res) => {
+  const cards = [
+    { id: 1, title: "Maharshi Panini", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
+    { id: 2, title: "Modern compare", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
+    { id: 3, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
+    { id: 4, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
+    // Add more card objects as needed
+  ];
 
   const scientists = [
-    {
-      id: 1,
-      name: "Albert Einstein",
-      contribution: "Theory of Relativity",
-      image: "einstein.png",
-    },
-    {
-      id: 2,
-      name: "Marie Curie",
-      contribution: "Radioactivity",
-      image: "curie.png",
-    },
+    { id: 1, name: "Albert Einstein", contribution: "Theory of Relativity", image: "einstein.png" },
+    { id: 2, name: "Marie Curie", contribution: "Radioactivity", image: "curie.png" },
     // Add more scientist objects as needed
   ];
+
   const books = [
     { id: 1, title: "Book Title 1", author: "Author 1", image: "book1.png" },
     { id: 2, title: "Book Title 2", author: "Author 2", image: "book2.png" },
@@ -139,23 +55,21 @@ app.get('/', (req, res) => {
     scientists: scientists,
     books: books,
   });
-
-  console.log("GET / route hit, rendering UTindex");
 });
 
-<<<<<<< Updated upstream
-app.get("/card/:id", async (req, res) => {
+// Route for comparison controller
+app.get("/comparison", (req, res) => {
+  res.render("comparisonController", {
+    card: 1,
+    title: "Universal truth great think",
+  });
+  console.log("GET /comparison route hit, rendering comparison");
+});
+
+// Route for individual cards
+app.get("/card/:id", (req, res) => {
   const cardId = req.params.id;
-  const card = await comparision.findById(cardId);
-  console.log({ cardId, card });
-=======
-app.get('/', (req, res) => {
-    res.render('camparisonCotroller',
-        {
-            card: 1,
-            title: 'Universal truth great think'
-        })
->>>>>>> Stashed changes
+  const card = card.find((c) => c.id == cardId);
 
   if (card) {
     res.render("card", { card });
@@ -166,13 +80,13 @@ app.get('/', (req, res) => {
 
 // API Routes
 app.use("/api/v1/users", UserRouter);
-// Comparison Router
-<<<<<<< Updated upstream
 app.use("/api/v1/comparisons", comparisonRouter);
-=======
-app.use('/api/v1/createComparison', comparisonRouter);
-// app.use("/comparisons", comparisonRouter);
->>>>>>> Stashed changes
 
 // Exporting app
 export { app };
+
+// Server setup (uncomment if you want to run the server directly from this file)
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
