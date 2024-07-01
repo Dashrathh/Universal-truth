@@ -5,6 +5,13 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import UserRouter from "./routes/user.routes.js";
 import comparisonRouter from "./routes/CompsrisonRoutes.js"
+import scientistRouter from "./routes/Scientist.routes.js"
+
+
+import { comparision } from "./models/comparision.model.js";
+import { CallTracker } from "assert";
+import { Scientist } from "./models/Scientist.model.js";
+import { AncientBook } from "./models/Book.model.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,28 +33,36 @@ app.use(cookieParser());
 // View Engine Setup (EJS)
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+const cards = [
+  { _id: 1, title: "Maharshi Panini", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
+  { _id: 2, title: "Modern compare", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
+  { _id: 3, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
+  { _id: 4, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
+  // Add more card objects as needed
+];
+
+const scientists = [
+  { _id: 1, name: "Albert Einstein", contribution: "Theory of Relativity", image: "einstein.png" },
+  { _id: 2, name: "Marie Curie", contribution: "Radioactivity", image: "curie.png" },
+  // Add more scientist objects as needed
+];
+
+const books = [
+  { _id: 1, title: "Book Title 1", text: "This is book written by ancient india", image: "book1.png" },
+  { _id: 2, title: "Book Title 1", text: "This is book written by ancient india", image: "book1.png" },
+  { _id: 3, title: "Book Title 2", text: "", image: "book2.png" },
+  { _id: 4, title: "Book Title 2", text: "", image: "book2.png" },
+  // Add more book objects as needed
+];
 
 // Sample route
-app.get("/", (req, res) => {
-  const cards = [
-    { id: 1, title: "Maharshi Panini", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
-    { id: 2, title: "Modern compare", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
-    { id: 3, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
-    { id: 4, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
-    // Add more card objects as needed
-  ];
-
-  const scientists = [
-    { id: 1, name: "Albert Einstein", contribution: "Theory of Relativity", image: "einstein.png" },
-    { id: 2, name: "Marie Curie", contribution: "Radioactivity", image: "curie.png" },
-    // Add more scientist objects as needed
-  ];
-
-  const books = [
-    { id: 1, title: "Book Title 1", author: "Author 1", image: "book1.png" },
-    { id: 2, title: "Book Title 2", author: "Author 2", image: "book2.png" },
-    // Add more book objects as needed
-  ];
+app.get("/", async (req, res) => {
+  const cards = await comparision.find();
+  // const scientists = await Scientist.find();
+  // const books = await AncientBook.find();
+  console.log("cards: ", cards)
+  console.log("sci : ", scientists);
+  console.log("books :", books);
 
   res.render("UTindex", {
     title: "Universaltruth",
@@ -59,17 +74,20 @@ app.get("/", (req, res) => {
 
 // Route for comparison controller
 app.get("/comparison", (req, res) => {
-  res.render("comparisonController", {
-    card: 1,
-    title: "Universal truth great think",
-  });
-  console.log("GET /comparison route hit, rendering comparison");
+
+  comparison,
+    res.render("createComparison", {
+
+      card: 1,
+      title: "Universal truth great think",
+    });
+
 });
 
 // Route for individual cards
-app.get("/card/:id", (req, res) => {
+app.get("/card/:id", async (req, res) => {
   const cardId = req.params.id;
-  const card = card.find((c) => c.id == cardId);
+  const card = await comparision.findById(cardId);
 
   if (card) {
     res.render("card", { card });
@@ -80,7 +98,8 @@ app.get("/card/:id", (req, res) => {
 
 // API Routes
 app.use("/api/v1/users", UserRouter);
-app.use("/api/v1/comparisons", comparisonRouter);
+app.use("/api/v1/comparison", comparisonRouter);
+app.use("/api/v1/Scientists", scientistRouter);
 
 // Exporting app
 export { app };

@@ -81,6 +81,7 @@ const getAllComparisons = asyncHandler(async (_req, res) => {
   if (!comaprison) {
     throw ApiError(500, "Comparison not found");
   }
+  console.log("compu:",comaprison); // Debugging line
 
   console.log(comaprison);
 

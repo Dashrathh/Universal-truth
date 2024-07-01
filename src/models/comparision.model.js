@@ -2,6 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 const CamparisonSchema = new Schema(
   {
+    title:{
+      type:String,
+      required:true,
+    },
     mordenField: {
       type: String,
       required: true,

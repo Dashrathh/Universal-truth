@@ -18,8 +18,16 @@ const ScientistSchema = new Schema(
       type: String,
       required: true,
     },
-
+    ScientistImage:{
+      type:String,
+      require:true
+    },
     their_work: {
+      type: String,
+      required: true,
+    },
+
+    workingImage: {
       type: String,
       required: true,
     },
@@ -34,7 +42,7 @@ const ScientistSchema = new Schema(
 
     evidence: [
       {
-        type: {
+        evidenceImage: {
           type: String, // Typw of evidence, e.g., "photo"
           require: true,
         },
