@@ -44,24 +44,19 @@ const ScientistSchema = new Schema(
       {
         evidenceImage: {
           type: String, // Typw of evidence, e.g., "photo"
-          require: true,
+          required: true,
         },
 
         url: {
           type: String, // url path to the photot
-          require: true,
+          required: true,
         },
         description: {
           type: String,
-          require: false,
+          required: false,
         },
       },
     ],
-    created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
   },
   {
     timestamps: true,

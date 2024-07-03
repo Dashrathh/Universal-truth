@@ -13,27 +13,17 @@ import {  createScientist,
 
 
 const scientist = Router();
-scientist.route ('/create').post(
-    upload.fields([
 
-      {
-        name: "ScientistImage",
-        maxCount: 1
-      },
-      {
-        name: "workingImage",
-        maxCount: 1
-      },
-      {name: "achivementImage",
-        maxCount: 1
-      },
-      {name: "evidenceImage",
-        maxCount: 1
-      }
-    ]),
-    createScientist)
-
-
+scientist.route('/create').post(
+  upload.fields([
+    { name: 'ScientistImage', maxCount: 1 },
+    { name: 'workingImage', maxCount: 1 },
+    { name: 'achivementImage', maxCount: 1 },
+    { name: 'evidenceImage', maxCount: 1 },
+    { name: 'evidence', maxCount: 10 }
+  ]),
+  createScientist
+);
 scientist.route('/list').get(getAllScientists)
 
 scientist.route('/scientistId').put(updateScientist)
