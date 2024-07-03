@@ -17,39 +17,42 @@ const createScientist = asyncHandler(async (req, res) => {
         evidence
     } = req.body;
 
-    const scientistImageLocalPath = req.files?.ScientistImage?.[0]?.path;
+    const ScientistImageLocalPath = req.files?.ScientistImage?.[0]?.path;
     const achivementImageLocalPath = req.files?.achivementImage?.[0]?.path;
-    const evidenceImageLocalPath = req.files?.evidence?.[0]?.path;
+    const evidenceImageLocalPath = req.files?.evidenceImage?.[0]?.path;
     const workingImageLocalPath = req.files?.workingImage?.[0]?.path;
 
-    if (!scientistImageLocalPath || !achivementImageLocalPath || !evidenceImageLocalPath ||!workingImageLocalPath) {
+    if (!ScientistImageLocalPath || !achivementImageLocalPath || !evidenceImageLocalPath ||!workingImageLocalPath) {
         throw new ApiError(400, "All images are required");
     }
 
+    console.log(ScientistImageLocalPath);
     
     // Upload images to Cloudinary
 
-    const scientistImage = await uploadOnCloudinary(scientistImageLocalPath);
+    const ScientistImage = await uploadOnCloudinary(ScientistImageLocalPath);
     const achivementImage = await uploadOnCloudinary(achivementImageLocalPath);
-    const evidenceImage = await uploadOnCloudinary(evidenceImageLocalPath);
-    const workingImage = await uploadOnCloudinary(workingImageLocalPath);
+    const evidenceImage = await uploadOnCloudinary(evidenceImageLocalPath)
+    const workingImage = await uploadOnCloudinary(workingImageLocalPath)
+
+
+if(!ScientistImage||achivementImage ||evidenceImage||workingImage){
+    throw new ApiError(400,"image upload failed")
+}
+(console.error());
 
     const newScientist = await Scientist.create({
         name,
         birth_year,
         death_year,
         personalLife,
-        ScientistImage: scientistImage.url,
         their_work,
         achivement,
+        evidence,
+        ScientistImage: ScientistImage.url,
         achivementImage: achivementImage.url,
-        workingImage: workingImage.url,
         evidenceImage: evidenceImage.url,
-        evidence: [{
-            type: evidence.type,
-            url: evidenceImage.url,
-            description: evidence.description
-        }]
+        workingImage: workingImage.url
     });
 
     return res.status(200).json(new ApiResponse(200, "Scientist created successfully", newScientist));
@@ -88,13 +91,6 @@ const deleteScientist = asyncHandler(async (req, res) => {
 
     return res.status(200).json(new ApiResponse(200, "Scientist deleted successfully", deletedScientist));
 });
-
-
-
-       
-               
-
-
 
 
 export {

@@ -6,6 +6,7 @@ import path from "path";
 import UserRouter from "./routes/user.routes.js";
 import comparisonRouter from "./routes/CompsrisonRoutes.js"
 import scientistRouter from "./routes/Scientist.routes.js"
+import bookRouter from "./routes/Books.routes.js"
 
 
 import { comparision } from "./models/comparision.model.js";
@@ -99,7 +100,8 @@ app.get("/card/:id", async (req, res) => {
 // API Routes
 app.use("/api/v1/users", UserRouter);
 app.use("/api/v1/comparison", comparisonRouter);
-app.use("/api/v1/Scientists", scientistRouter);
+app.use("/api/v1/Scientist", scientistRouter);
+app.use("/api/v1/books", bookRouter);
 
 // Exporting app
 export { app };

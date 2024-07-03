@@ -14,7 +14,11 @@ const BookSchema = new Schema(
       type: String,
       required: true,
     },
-
+    BookInfo:{
+      type:String,
+      require:true
+    },
+    
     Ancient_invention: {
       type: String,
       required: true,
@@ -28,7 +32,7 @@ const BookSchema = new Schema(
       type: String,
       required: true,
     },
-    Image: {
+    Images: {
       type: String,
       required: true,
     },

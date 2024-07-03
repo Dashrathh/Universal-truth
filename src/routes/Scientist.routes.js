@@ -2,19 +2,37 @@
 
 // import { Router } from "express"
 import { Router } from "express";
-import { createScientist,
-    getAllScientists,
-    updateScientist,
-    deleteScientist
+import {  createScientist,
+  getAllScientists,
+  updateScientist,
+  deleteScientist
  } from "../controllers/Scientist.controller.js"
 
- import { upload } from "../middlewares/multer.middleare.js";
- import router from "./user.routes.js";
+ import { upload } from "../middlewares/multer.middleare.js"
+
 
 
 const scientist = Router();
+scientist.route ('/create').post(
+    upload.fields([
 
-scientist.route ('/create').post(createScientist)
+      {
+        name: "ScientistImage",
+        maxCount: 1
+      },
+      {
+        name: "workingImage",
+        maxCount: 1
+      },
+      {name: "achivementImage",
+        maxCount: 1
+      },
+      {name: "evidenceImage",
+        maxCount: 1
+      }
+    ]),
+    createScientist)
+
 
 scientist.route('/list').get(getAllScientists)
 
