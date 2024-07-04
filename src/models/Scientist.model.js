@@ -2,6 +2,15 @@ import mongoose, { Schema } from "mongoose";
 
 const ScientistSchema = new Schema(
   {
+    cardname:{
+      type:String,
+      required:true
+    },
+    contribution:{
+      type:String,
+      required:true
+    },
+
     name: {
       type: String,
       required: true,

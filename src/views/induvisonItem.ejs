@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="scientist-card">
+        <img src="<%= scientist.ScientistImage %>" alt="<%= scientist.name %>">
+        <h2><%= scientist.name %></h2>
+        <p>Birth Year: <%= scientist.birth_year %></p>
+        <p>Death Year: <%= scientist.death_year %></p>
+        <p>Personal Life: <%= scientist.personalLife %></p>
+        <p>Their Work: <%= scientist.their_work %></p>
+        <p>Achievement: <%= scientist.achivement %></p>
+        <img src="<%= scientist.achivementImage %>" alt="Achievement Image">
+        <img src="<%= scientist.workingImage %>" alt="Working Image">
+        <img src="<%= scientist.evidenceImage %>" alt="Evidence Image">
+        <p>Contribution: <%= scientist.contribution %></p>
+    </div>
+</body>
+</html>

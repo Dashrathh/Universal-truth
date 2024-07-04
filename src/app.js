@@ -7,15 +7,16 @@ import UserRouter from "./routes/user.routes.js";
 import comparisonRouter from "./routes/CompsrisonRoutes.js"
 // import scientistRouter from "./routes/Scientist.routes.js"
 import bookRouter from "./routes/Books.routes.js"
-import scietuRouter from "./routes/scietu.router.js"
+import scientistRouter from "./routes/Scientist.routes.js";
 
-
+// import { getAllScientists } from "./controllers/Scientist.controller.js";
 import { comparision } from "./models/comparision.model.js";
 import { CallTracker } from "assert";
 import { Scientist } from "./models/Scientist.model.js";
 import { AncientBook } from "./models/Book.model.js";
 import { title } from "process";
 import { log } from "console";
+import { getSingleScientist } from "./controllers/Scientist.controller.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,19 +38,19 @@ app.use(cookieParser());
 // View Engine Setup (EJS)
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-const cards = [
-  { _id: 1, title: "Maharshi Panini", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
-  { _id: 2, title: "Modern compare", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
-  { _id: 3, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
-  { _id: 4, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
-  // Add more card objects as needed
-];
+// const cards = [
+//   { _id: 1, title: "Maharshi Panini", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
+//   { _id: 2, title: "Modern compare", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
+//   { _id: 3, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
+//   { _id: 4, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
+//   // Add more card objects as needed
+// ];
 
-const scientists = [
-  { _id: 1, name: "Albert Einstein", contribution: "Theory of Relativity", image: "einstein.png" },
-  { _id: 2, name: "Marie Curie", contribution: "Radioactivity", image: "curie.png" },
-  // Add more scientist objects as needed
-];
+// const scientists = [
+//   { _id: 1, name: "Albert Einstein", contribution: "Theory of Relativity", image: "einstein.png" },
+//   { _id: 2, name: "Marie Curie", contribution: "Radioactivity", image: "curie.png" },
+//   // Add more scientist objects as needed
+// ];
 
 const books = [
   { _id: 1, title: "Book Title 1", text: "This is book written by ancient india", image: "book1.png" },
@@ -62,10 +63,10 @@ const books = [
 // Sample route
 app.get("/", async (req, res) => {
   const cards = await comparision.find();
-  // const scientists = await Scientist.find();
+  const scientists = await Scientist.find();
   // const books = await AncientBook.find();
   console.log("cards: ", cards)
-  console.log("sci : ", scientists);
+  // console.log("sci : ", scientists);
   console.log("books :", books);
 
   res.render("UTindex", {
@@ -76,14 +77,19 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.get("/",async (req,res) =>{
-  const scientist = await Scientist.find();
 
-  res.render("scientist", {
-    title:"Scientist",
-    scientists:scientists
-  })
-})
+  //  app.get("/" , async(req,res) =>{
+  //   const scientist = await Scientist.find()
+
+
+
+  //   res.render("UTindex" ,{
+  //     scientist
+  //   })
+  //  })
+
+
+
 console.log(Scientist);
 // Route for comparison controller
 app.get("/comparison", (req, res) => {
@@ -114,7 +120,7 @@ app.use("/api/v1/users", UserRouter);
 app.use("/api/v1/comparison", comparisonRouter);
 // app.use("/api/v1/Scientist", scientistRouter);
 app.use("/api/v1/books", bookRouter);
-app.use('/api/scientists', scietuRouter);
+app.use('/api/scientists', scientistRouter);
 
 
 // Exporting app

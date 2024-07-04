@@ -8,39 +8,7 @@
 <body>
     <h1>Scientists List</h1>
     <ul>
-        <% scientists.forEach(scientist => { %>
-            <li>
-                <h2><%= scientist.name %></h2>
-                <p>Birth Year: <%= scientist.birth_year %></p>
-                <p>Death Year: <%= scientist.death_year %></p>
-                <p>Personal Life: <%= scientist.personalLife %></p>
-                <p>Their Work: <%= scientist.their_work %></p>
-                <p>Achievement: <%= scientist.achivement %></p>
-                <% if (scientist.ScientistImage) { %>
-                    <img src="<%= scientist.ScientistImage %>" alt="<%= scientist.name %>">
-                <% } %>
-                <% if (scientist.workingImage) { %>
-                    <img src="<%= scientist.workingImage %>" alt="<%= scientist.name %> at work">
-                <% } %>
-                <% if (scientist.achivementImage) { %>
-                    <img src="<%= scientist.achivementImage %>" alt="<%= scientist.name %> achievement">
-                <% } %>
-                <% if (scientist.evidenceImage) { %>
-                    <img src="<%= scientist.evidenceImage %>" alt="Evidence Image">
-                <% } %>
-                <% if (scientist.evidence) { %>
-                    <h3>Evidence:</h3>
-                    <ul>
-                        <% scientist.evidence.forEach(evidence => { %>
-                            <li>
-                                <p><%= evidence.description %></p>
-                                <img src="<%= evidence.url %>" alt="Evidence Image">
-                            </li>
-                        <% }) %>
-                    </ul>
-                <% } %>
-            </li>
-        <% }) %>
+        
     </ul>
 </body>
 </html>

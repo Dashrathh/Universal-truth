@@ -76,19 +76,19 @@ const createComparison = asyncHandler(async (req, res) => {
 
 // * 2: get all comparison
 const getAllComparisons = asyncHandler(async (_req, res) => {
-  const comaprison = await comparision.find();
+  // const comaprison = await comparision.find();
 
-  if (!comaprison) {
-    throw ApiError(500, "Comparison not found");
-  }
-  console.log("compu:",comaprison); // Debugging line
+  // if (!comaprison) {
+  //   throw ApiError(500, "Comparison not found");
+  // }
+  // console.log("compu:",comaprison); // Debugging line
 
-  console.log(comaprison);
+  // console.log(comaprison);
 
-  res.render("createComparison", {
-    comaprison,
-    message: "Comparisons found successfully",
-  });
+  // res.render("createComparison", {
+  //   comaprison,
+  //   message: "Comparisons found successfully",
+  // });
 
 });
 
@@ -101,7 +101,7 @@ const getComparisonById = asyncHandler(async (req, res) => {
     throw ApiError(400, "comparion not found");
   }
 
-  res.render("createComparison");
+  res.render("createComparison",{comaprison});
 });
 
 // * 4. Update Comparison by ID

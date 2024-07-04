@@ -3,9 +3,10 @@
 // import { Router } from "express"
 import { Router } from "express";
 import {  createScientist,
-  getAllScientists,
+  // getAllScientists,
   updateScientist,
-  deleteScientist
+  deleteScientist,
+  getSingleScientist
  } from "../controllers/Scientist.controller.js"
 
  import { upload } from "../middlewares/multer.middleare.js"
@@ -24,10 +25,12 @@ scientist.route('/create').post(
   ]),
   createScientist
 );
-scientist.route('/list').get(getAllScientists)
+// scientist.route('/list').get(getAllScientists)
 
 scientist.route('/scientistId').put(updateScientist)
 
 scientist.route('/:scientistId').delete(deleteScientist)
+
+scientist.route('/:id').get(getSingleScientist)
 
 export default scientist;

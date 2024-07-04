@@ -61,21 +61,23 @@
 <h2>Ancient Scientists</h2>
 <section class="h-swiper">
   <div class="h-swiper-wrapper">
-    <% for (let i = 0; i < scientists.length; i++) { %>
-    <div class="h-swiper-slide">
-      <a href="<%= scientists[i]._id %>" id="<%= scientists[i]._id %>">
-        <div class="card">
-          <div class="card_image">
-            <img src="<%= scientists[i].achivementImage %>" alt="" />
-          </div>
-          <div class="card_content">
-            <span class="card_title"><%= scientists[i].name %></span>
-            <p class="card_text"><%= scientists[i].contribution  %></p>
-          </div>
+    
+    <% scientists.forEach(scientist => { %>
+      <li> <div class="h-swiper-slide">
+          <a href="/api/scientists/<%= scientist._id %>" id="<%= scientist._id %>">
+            <div class="card">
+              <div class="card_image">
+                <img src="<%= scientist.ScientistImage %>" alt="" />
+              </div>
+              <div class="card_content">
+                <span class="card_title"><%= scientist.name %></span>
+                <p class="card_text"><%= scientist.contribution  %></p>
+              </div>
+            </div>
+          </a>
         </div>
-      </a>
-    </div>
-    <% } %>
+          </li>
+  <% }) %>
   </div>
   <div class="button-s">
     <span class="btn-icon" id="left-btn">&#129128;</span>

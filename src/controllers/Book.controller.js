@@ -15,11 +15,11 @@ const creatBook = asyncHandler(async(req,res) =>{
         Bookrefer,
     } = req.body;
 
-    const bookImageLocalPath = req.files?.BookImage?.[0]?.path
+    // const bookImageLocalPath = req.files?.BookImage?.[0]?.path
     const Ancient_inventionImageLocalPath = req.files?.Ancient_invention?.[0]?.path
     const ImagesLocalPath = req.files?.Image?.[0]?.path
 
-    if(!bookImageLocalPath||Ancient_inventionImageLocalPath||ImagesLocalPath){
+    if(!bookImageLocalPath||!Ancient_inventionImageLocalPath||!ImagesLocalPath){
         throw new ApiError(400 , "All image are requred")
     }
 
