@@ -4,6 +4,8 @@ import { ApiError } from "../utils/ApiError.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
+// import scientist from "../routes/Scientist.routes.js";
+
 // Create a new scientist
 const createScientist = asyncHandler(async (req, res) => {
     
@@ -34,12 +36,13 @@ const createScientist = asyncHandler(async (req, res) => {
         const achivementImage = await uploadOnCloudinary(achivementImageLocalPath);
         const evidenceImage = await uploadOnCloudinary(evidenceImageLocalPath);
         const workingImage = await uploadOnCloudinary(workingImageLocalPath);
-        // const evidence = await uploadOnCloudinary(evidenceLocalPath)
 
+        // const evidence = await uploadOnCloudinary(evidenceLocalPath)
         // Ensure all required fields are present
         
 
-        const newScientist = new Scientist({
+        const newScientist = await Scientist.create(
+            {
             name,
             birth_year,
             death_year,
@@ -54,8 +57,8 @@ const createScientist = asyncHandler(async (req, res) => {
         
         });
 
+        console.log(scientist);
         
-
         res.status(201).json(new ApiResponse(201, "Scientist created successfully", newScientist));
     if(!newScientist){
         throw new ApiError(400,"Scientist created failed")
@@ -63,11 +66,18 @@ const createScientist = asyncHandler(async (req, res) => {
 
 });
 
+
 // Get all scientists
 const getAllScientists = asyncHandler(async (req, res) => {
     const scientists = await Scientist.find();
-    return res.status(200).json(new ApiResponse(200, "All scientists data fetched", scientists));
+    if (req.headers.accept && req.headers.accept.includes('application/json')) {
+        return res.status(200).json(new ApiResponse(200, "All scientists data fetched", scientists));
+    } else {
+        return res.render('scientists', { scientists });
+    }
+
 });
+
 
 // Update a scientist
 const updateScientist = asyncHandler(async (req, res) => {

@@ -5,14 +5,17 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import UserRouter from "./routes/user.routes.js";
 import comparisonRouter from "./routes/CompsrisonRoutes.js"
-import scientistRouter from "./routes/Scientist.routes.js"
+// import scientistRouter from "./routes/Scientist.routes.js"
 import bookRouter from "./routes/Books.routes.js"
+import scietuRouter from "./routes/scietu.router.js"
 
 
 import { comparision } from "./models/comparision.model.js";
 import { CallTracker } from "assert";
 import { Scientist } from "./models/Scientist.model.js";
 import { AncientBook } from "./models/Book.model.js";
+import { title } from "process";
+import { log } from "console";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -73,10 +76,19 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.get("/",async (req,res) =>{
+  const scientist = await Scientist.find();
+
+  res.render("scientist", {
+    title:"Scientist",
+    scientists:scientists
+  })
+})
+console.log(Scientist);
 // Route for comparison controller
 app.get("/comparison", (req, res) => {
 
-  comparison,
+  Comparison,
     res.render("createComparison", {
 
       card: 1,
@@ -100,8 +112,10 @@ app.get("/card/:id", async (req, res) => {
 // API Routes
 app.use("/api/v1/users", UserRouter);
 app.use("/api/v1/comparison", comparisonRouter);
-app.use("/api/v1/Scientist", scientistRouter);
+// app.use("/api/v1/Scientist", scientistRouter);
 app.use("/api/v1/books", bookRouter);
+app.use('/api/scientists', scietuRouter);
+
 
 // Exporting app
 export { app };
