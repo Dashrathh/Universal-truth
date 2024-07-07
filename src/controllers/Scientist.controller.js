@@ -126,7 +126,6 @@ const deleteScientist = asyncHandler(async (req, res) => {
 
 export {
     createScientist,
-    // getAllScientists,
     updateScientist,
     deleteScientist,
     getSingleScientist

@@ -17,6 +17,7 @@ import { AncientBook } from "./models/Book.model.js";
 import { title } from "process";
 import { log } from "console";
 import { getSingleScientist } from "./controllers/Scientist.controller.js";
+import { User } from "./models/user.model.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -52,82 +53,44 @@ app.set("view engine", "ejs");
 //   // Add more scientist objects as needed
 // ];
 
-const books = [
-  { _id: 1, title: "Book Title 1", text: "This is book written by ancient india", image: "book1.png" },
-  { _id: 2, title: "Book Title 1", text: "This is book written by ancient india", image: "book1.png" },
-  { _id: 3, title: "Book Title 2", text: "", image: "book2.png" },
-  { _id: 4, title: "Book Title 2", text: "", image: "book2.png" },
-  // Add more book objects as needed
-];
+// const books = [
+//   { _id: 1, title: "Book Title 1", text: "This is book written by ancient india", image: "book1.png" },
+//   { _id: 2, title: "Book Title 1", text: "This is book written by ancient india", image: "book1.png" },
+//   { _id: 3, title: "Book Title 2", text: "", image: "book2.png" },
+//   { _id: 4, title: "Book Title 2", text: "", image: "book2.png" },
+//   // Add more book objects as needed
+// ];
 
 // Sample route
 app.get("/", async (req, res) => {
-  const cards = await comparision.find();
+  const comparisons = await comparision.find();
   const scientists = await Scientist.find();
-  // const books = await AncientBook.find();
-  console.log("cards: ", cards)
-  // console.log("sci : ", scientists);
-  console.log("books :", books);
+  const Books = await AncientBook.find();
+  const user = await User.find()
+  console.log("comparison: ", comparisons)
+  console.log("sci : ", scientists);
+  console.log("book :", Books);
+  console.log("user :", user);
 
   res.render("UTindex", {
     title: "Universaltruth",
-    cards: cards,
+    comparisons: comparisons,
     scientists: scientists,
-    books: books,
+    Books: Books,
+    user: user,
   });
 });
 
 
-  //  app.get("/" , async(req,res) =>{
-  //   const scientist = await Scientist.find()
-
-
-
-  //   res.render("UTindex" ,{
-  //     scientist
-  //   })
-  //  })
-
-
 
 console.log(Scientist);
-// Route for comparison controller
-app.get("/comparison", (req, res) => {
-
-  Comparison,
-    res.render("createComparison", {
-
-      card: 1,
-      title: "Universal truth great think",
-    });
-
-});
-
-// Route for individual cards
-app.get("/card/:id", async (req, res) => {
-  const cardId = req.params.id;
-  const card = await comparision.findById(cardId);
-
-  if (card) {
-    res.render("card", { card });
-  } else {
-    res.status(404).send("Card not found");
-  }
-});
 
 // API Routes
-app.use("/api/v1/users", UserRouter);
-app.use("/api/v1/comparison", comparisonRouter);
-// app.use("/api/v1/Scientist", scientistRouter);
-app.use("/api/v1/books", bookRouter);
+app.use("/api/users", UserRouter);
+app.use('/api/comparisons', comparisonRouter);
+app.use("/api/Books", bookRouter);
 app.use('/api/scientists', scientistRouter);
 
 
 // Exporting app
 export { app };
-
-// Server setup (uncomment if you want to run the server directly from this file)
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });

@@ -1,3 +1,6 @@
+
+import express from "express";
+
 import {
   createComparison,
   getAllComparisons,
@@ -8,8 +11,11 @@ import {
 import { upload } from "../middlewares/multer.middleare.js";
 import router from "../routes/user.routes.js";
 
+const compare = express.Router(); 
+
+
 // * creat new camparion router
-router.route("/createComparison").post(
+compare.route("/createComparison").post(
   upload.fields([
     {
       name: "mordenImage",
@@ -32,10 +38,10 @@ router.route("/createComparison").post(
 );
 
 // * route to get all comparison
-router.route("/").get(getAllComparisons);
+compare.route("/").get(getAllComparisons);
 
 // * route upadate comparion
-router.route("/:comparisonId").put(
+compare.route("/:comparisonId").put(
   upload.fields([
     {
       name: "mordenImage",
@@ -58,12 +64,12 @@ router.route("/:comparisonId").put(
 );
 
 // * Route to delete a comparison by id
-router.route("/comparison/:comparisonId").get(getComparisonById);
+compare.route('/list/:id').get(getComparisonById);
 
 // * Route to delete a comparison by id
-router.route("/:comparisonId").delete(deleteCompariosn);
+compare.route("/:comparisonId").delete(deleteCompariosn);
 
 // * Route to get a comparison by id
-router.route("/", getComparisonById);
+// compare.route("/", getComparisonById);
 
-export default router;
+export default compare;

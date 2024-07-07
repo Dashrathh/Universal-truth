@@ -25,6 +25,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 
 // * ================ Register user ===============
 const registerUser = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const { fullname, username, email, password } = req.body;
 
   if (
@@ -41,38 +42,13 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(409, "User with email or username already exists");
   }
 
-  const avatarLocalPath = req.files?.avatar?.[0]?.path;
-
-  let coverImageLocalPath;
-
-  if (
-    req.files &&
-    Array.isArray(req.files.coverImage) &&
-    req.files.coverImage[0]?.path
-  ) {
-    coverImageLocalPath = req.files.coverImage[0].path;
-  }
-
-  if (!avatarLocalPath) {
-    throw new ApiError(400, "Avatar file is required");
-  }
-
-  const avatar = await uploadOnCloudinary(avatarLocalPath);
-  const coverImage = coverImageLocalPath
-    ? await uploadOnCloudinary(coverImageLocalPath)
-    : null;
-
-  if (!avatar) {
-    throw new ApiError(400, "Avatar file upload failed");
-  }
-
+  
   const user = await User.create({
     fullname,
-    avatar: avatar.url,
-    coverImage: coverImage?.url || "",
     email,
     password,
     username: username.toLowerCase(),
+    role :admin
   });
 
   const createdUser = await User.findById(user._id).select(

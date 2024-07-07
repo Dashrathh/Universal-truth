@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="/css/style.css" />
 <section class="background">
-  <img src="" class="r-image" alt="Research Image" />
+  <img src="/public/images/reaserch.png" class="r-image" alt="Research Image" />
 </section>
 
 <section class="info-container">
@@ -26,24 +26,25 @@
 
 <section class="compare">
   <div class="compare-wrapper">
-    <% for (let i = 0; i < cards.length; i++) { %>
-    <div class="compare-slide">
-      <a href="/card/<%= cards[i]._id %>" id="<%= cards[i]._id %>">
+    <% comparisons.forEach(comparison => { %>
+      <li>
+      <a href="/api/comparisons/list/<%= comparison._id %>" id="<%= comparison._id %>">
+      <div class="compare-slide">
         <div class="com">
           <div class="com-image">
             <img
-              src="<%= cards[i].mordenImage %>"
-              alt="<%= cards[i].ancientField %> Image"
-            />
+              src="<%= comparison.mordenImage %>"
+              />
           </div>
           <div class="com_content">
-            <span class="com_title"><%= cards[i].title %></span>
-            <p class="com_text"><%= cards[i].summary.slice(0,100) %></p>
+            <span class="com_title"><%= comparison.title %></span>
+            <p class="com_text"><%= comparison.summary %></p>
           </div>
         </div>
       </a>
+    </li>
     </div>
-    <% } %>  
+    <% } )%>  
   </div>
 </section>
 <div class="button-s">
@@ -90,18 +91,19 @@
 <section class="swiper mySwiper">
   <i class="fa fa-angle-left" style="font-size: 24px"></i>
   <div class="swiper-wrapper">`
-    <% for (let i = 0; i < books.length; i++) { %>
-    <div class="cord swiper-slide">
+    <% Books.forEach(book => { %>
+      <a href="/api/Books/list/<%= book._id %>"></a>
+      <div class="cord swiper-slide">
       <div class="cord__image">
-        <img src="<%= books[i].image %>" alt="card image" />
+        <img src="<%= book.BookImage %>" alt="card image" />
       </div>
       <div class="cord__content">
-        <span class="cord__title"><%= books[i].title %></span>
-        <!-- <span class="cord__name"><%= books[i].author %></span> -->
-        <p class="cord__text"><%= books[i].text %></p>
+        <span class="cord__title"><a href="/api/Books/list/<%= book._id%>"> <%= book.title %></a></span>
+      
+        <p class="cord__text"><%= book.BookInfo %></p>
       </div>
     </div>
-    <% } %>
+    <% } )%>
   </div>
   <div class="button-s">
     <span class="book-btn" id="leftenern-btn">&#129128;</span>

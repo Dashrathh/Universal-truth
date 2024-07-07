@@ -74,34 +74,26 @@ const createComparison = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200), createComparison, "All creat successfuly");
 });
 
-// * 2: get all comparison
-const getAllComparisons = asyncHandler(async (_req, res) => {
-  // const comaprison = await comparision.find();
-
-  // if (!comaprison) {
-  //   throw ApiError(500, "Comparison not found");
+const getAllComparisons = asyncHandler(async (req, res) => {
+  // const comparisons = await comparision.find();
+  
+  // if (!comparisons) {
+  //   throw new ApiError(500, "Comparisons not found");
   // }
-  // console.log("compu:",comaprison); // Debugging line
 
-  // console.log(comaprison);
-
-  // res.render("createComparison", {
-  //   comaprison,
-  //   message: "Comparisons found successfully",
-  // });
-
-});
-
-// * 3: get comparison by ID
+  // res.render("UTindex", {
+  //   comparision});
+ });
+// // * 3: get comparison by ID
 const getComparisonById = asyncHandler(async (req, res) => {
-  const { comparisionId } = req.params;
-  const comaprison = await comparision.findById(comparisionId);
-
-  if (!comaprison) {
-    throw ApiError(400, "comparion not found");
+  // const {comparisionId} = req.params;
+  const Comparison = await comparision.findById(req.params.id);
+  console.log(Comparison);
+  // console.log(Comparison.mordenField);
+  if (!Comparison) {
+    throw new ApiError(400, "comparion not found");
   }
-
-  res.render("createComparison",{comaprison});
+  res.render("createComparison",{Comparison});
 });
 
 // * 4. Update Comparison by ID

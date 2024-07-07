@@ -94,6 +94,12 @@
         
           }
         
+          /* login */
+
+          .Login{
+            display: flex;
+            margin-right: 30px;
+          }
         
           .container {
             display: flex;
@@ -194,7 +200,7 @@
         
         
            /* search input  */
-        
+          
         
           .search {
             position: relative;
@@ -573,6 +579,7 @@
             margin: 0 10px;
             overflow: hidden;
             margin-top: 50px;
+            align-items: center;
         
           }
         
@@ -787,7 +794,6 @@
         
         
           .book-btn {
-        
             cursor: pointer;
             /* color: azure; */
             width: 30px;
@@ -830,6 +836,7 @@
                   <a href="#aboutUs" class="navbar-link hover-1">About Us</a>
               </li>
           </ul>
+          
 
       </div>
 
@@ -845,5 +852,8 @@
                   <div id="result"></div>
           </div> 
 
+          <div class="Login">
+            <a href="/api/users/register/<%= user._id %>" class="login-link">sign in</a>
+        </div>
 
   </header>

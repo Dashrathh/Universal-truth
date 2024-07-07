@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Title and year styles */
+        .title {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .year {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        /* Paragraph styles */
+        .info,
+        .invention {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        /* Invention heading */
+        .invention-heading {
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Image styles */
+        .book-image {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="title"><%= book.title %></h2>
+        <h2 class="year"><%= book.written_year %></h2>
+        <p class="info"><%= book.BookInfo %></p>
+        <p class="invention"><%= book.Ancient_invention %></p>
+        <h3 class="invention-heading"><%= book.Ancient_invention %></h3>
+        <img class="book-image" src="<%= book.BookImage %>" alt="Book Image">
+    </div>
+</body>
+</html>

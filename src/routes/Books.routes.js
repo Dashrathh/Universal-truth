@@ -18,7 +18,7 @@ router.route('/create').post(
     creatBook
 );
 
-router.route('/list/:BookId').get(getBookById); 
+router.route('/list/:id').get(getBookById); 
 
 router.route('/update/:BookId').put(UpdateBook);
  

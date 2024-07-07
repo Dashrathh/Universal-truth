@@ -24,21 +24,13 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
-    avatar: {
-      type: String, //
-      required: true,
-      default: "",
-    },
-    coverImage: {
-      type: String,
-    },
     password: {
       type: String,
       required: [true, "Password is required"],
     },
     role: {
       type: String,
-      default: "admin",
+      default: "user",
     },
     refreshToken: {
       type: String,

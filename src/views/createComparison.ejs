@@ -37,35 +37,36 @@
     </style>
 </head>
 <body>
-    <% comparisons.forEach(comparison => { %>
+  
         <div class="comparison-card">
             <div class="comparison-section">
-                <h3>Modern Field: <%= comparison.mordenField %></h3>
-                <img src="<%= comparison.mordenImage %>" alt="Modern Field Image">
+                <%= Comparison.id %>
+                <h3><%= Comparison.mordenField %></h3>
+                <img src="<%= Comparison.mordenImage %>" alt="Modern Field Image">
             </div>
             <div class="comparison-section">
-                <h3>Ancient Field: <%= comparison.ancientField %></h3>
-                <img src="<%= comparison.ancientImage %>" alt="Ancient Field Image">
+                <h3>Ancient Field: <%= Comparison.ancientField %></h3>
+                <img src="<%= Comparison.ancientImage %>" alt="Ancient Field Image">
             </div>
             <div class="comparison-section">
                 <h3>Modern Working Model</h3>
-                <p><%= comparison.mordenWorkingModel %></p>
-                <img src="<%= comparison.mordenWorkingImage %>" alt="Modern Working Model Image">
+                <p><%= Comparison.mordenWorkingModel %></p>
+                <img src="<%= Comparison.mordenWorkingImage %>" alt="Modern Working Model Image">
             </div>
             <div class="comparison-section">
                 <h3>Ancient Working Model</h3>
-                <p><%= comparison.ancientWorkingModel %></p>
-                <img src="<%= comparison.ancientWorkingImage %>" alt="Ancient Working Model Image">
+                <p><%= Comparison.ancientWorkingModel %></p>
+                <img src="<%= Comparison.ancientWorkingImage %>" alt="Ancient Working Model Image">
             </div>
             <div class="comparison-section">
                 <h3>Comparison</h3>
-                <p><%= comparison.compareText %></p>
+                <p><%= Comparison.compareText %></p>
             </div>
             <div class="comparison-section">
                 <h3>Summary</h3>
-                <p><%= comparison.summary %></p>
+                <p><%= Comparison.summary %></p>
             </div>
         </div>
-    <% }); %>
+
 </body>
 </html>

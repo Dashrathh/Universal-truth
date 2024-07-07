@@ -18,14 +18,13 @@ const BookSchema = new Schema(
       type:String,
       require:true
     },
-    
     Ancient_invention: {
       type: String,
       required: true,
     },
     Ancient_inventionImage: {
       type: String,
-      required: true,
+      required: false,
     },
 
     description: {
@@ -34,26 +33,26 @@ const BookSchema = new Schema(
     },
     Images: {
       type: String,
-      required: true,
+      required: false,
     },
 
-    Bookrefer: [
-      {
-        Image: {
-          type: String, // Typw of evidence, e.g., "photo"
-          required: true,
-        },
+  //   Bookrefer: [
+  //     {
+  //       Image: {
+  //         type: String, // Typw of evidence, e.g., "photo"
+  //         required: true,
+  //       },
 
-        url: {
-          type: String, // url path to the photot
-          required: true,
-        },
-        description: {
-          type: String,
-          required: false,
-        },
-      },
-    ],
+  //       url: {
+  //         type: String, // url path to the photot
+  //         required: true,
+  //       },
+  //       description: {
+  //         type: String,
+  //         required: false,
+  //       },
+  //     },
+  //   ],
   },
   {
     timestamps: true,
