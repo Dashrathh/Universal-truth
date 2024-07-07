@@ -14,12 +14,12 @@ router.route('/register').get((req,res) =>{
   res.render('register');
 });
 
-router.route('/register').post((req,res) =>{
-  res.end('Hello world');
-});
+// router.route('/register').post((req,res) =>{
+//   res.end('Hello world');
+// });
 // * Register a new user
 
-// router.route('/register').post(registerUser);
+router.route('/register').post(registerUser);
 
 // * Login user
 router.route("/login").post(loginUser);
