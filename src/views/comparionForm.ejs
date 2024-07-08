@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Comparison</title>
+</head>
+<body>
+    <h1>Create a New Comparison</h1>
+    
+    <form action="/api/comparisons" method="POST" enctype="multipart/form-data">
+        <label for="mordenField">Modern Field:</label>
+        <input type="text" id="mordenField" name="mordenField" required><br>
+
+        <label for="ancientField">Ancient Field:</label>
+        <input type="text" id="ancientField" name="ancientField" required><br>
+
+        <label for="mordenWorkingModel">Modern Working Model:</label>
+        <input type="text" id="mordenWorkingModel" name="mordenWorkingModel" required><br>
+
+        <label for="ancientWorkingModel">Ancient Working Model:</label>
+        <input type="text" id="ancientWorkingModel" name="ancientWorkingModel" required><br>
+
+        <label for="compareText">Comparison Text:</label>
+        <textarea id="compareText" name="compareText" required></textarea><br>
+
+        <label for="summary">Summary:</label>
+        <textarea id="summary" name="summary" required></textarea><br>
+
+        <label for="mordenImage">Modern Image:</label>
+        <input type="file" id="mordenImage" name="mordenImage" required><br>
+
+        <label for="ancientImage">Ancient Image:</label>
+        <input type="file" id="ancientImage" name="ancientImage" required><br>
+
+        <label for="mordenWorkingImage">Modern Working Image:</label>
+        <input type="file" id="mordenWorkingImage" name="mordenWorkingImage" required><br>
+
+        <label for="ancientWorkingImage">Ancient Working Image:</label>
+        <input type="file" id="ancientWorkingImage" name="ancientWorkingImage" required><br>
+
+        <button type="submit">Create Comparison</button>
+    </form>
+</body>
+</html>

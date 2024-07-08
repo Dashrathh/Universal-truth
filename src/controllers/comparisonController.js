@@ -20,8 +20,7 @@ const createComparison = asyncHandler(async (req, res) => {
   const mordenImageLocalPath = req.files?.mordenImage?.[0]?.path;
   const ancientImageLocalPath = req.files?.ancientImage?.[0]?.path;
   const mordenWorkingImageLocalPath = req.files?.mordenWorkingImage?.[0]?.path;
-  const ancientWorkingImageLocalPath =
-    req.files?.ancientWorkingImage?.[0]?.path;
+  const ancientWorkingImageLocalPath = req.files?.ancientWorkingImage?.[0]?.path;
 
   console.log(mordenImageLocalPath);
   console.log(ancientImageLocalPath);

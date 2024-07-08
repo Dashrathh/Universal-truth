@@ -29,7 +29,7 @@ const registerUser = asyncHandler(async (req, res) => {
   console.log(req.body);
 
   if (
-    [fullname, email, username, password].some((field => field === undefined || field.trim() ===  ""))
+    [fullname, username, email, password].some((field => field === undefined || field.trim() ===  ""))
   ) {
     throw new ApiError(400, "All fields are required");
   }
@@ -48,7 +48,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     username: username.toLowerCase(),
-    role :admin
+    role :"admin"
   });
 
   const createdUser = await User.findById(user._id).select(

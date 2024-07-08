@@ -32,34 +32,14 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json({ limit: "16kb" }));
-app.use(express.urlencoded({ extended: true, limit: "16kb" }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // View Engine Setup (EJS)
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-// const cards = [
-//   { _id: 1, title: "Maharshi Panini", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
-//   { _id: 2, title: "Modern compare", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "https://elibrary.thearyasamaj.org/attachment/view/ZUxpYnJhcnk%3DMTI1/person" },
-//   { _id: 3, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
-//   { _id: 4, title: "Modern with ancient", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", image: "/images/image1.png" },
-//   // Add more card objects as needed
-// ];
 
-// const scientists = [
-//   { _id: 1, name: "Albert Einstein", contribution: "Theory of Relativity", image: "einstein.png" },
-//   { _id: 2, name: "Marie Curie", contribution: "Radioactivity", image: "curie.png" },
-//   // Add more scientist objects as needed
-// ];
-
-// const books = [
-//   { _id: 1, title: "Book Title 1", text: "This is book written by ancient india", image: "book1.png" },
-//   { _id: 2, title: "Book Title 1", text: "This is book written by ancient india", image: "book1.png" },
-//   { _id: 3, title: "Book Title 2", text: "", image: "book2.png" },
-//   { _id: 4, title: "Book Title 2", text: "", image: "book2.png" },
-//   // Add more book objects as needed
-// ];
 
 // Sample route
 app.get("/", async (req, res) => {
