@@ -5,11 +5,9 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import UserRouter from "./routes/user.routes.js";
 import comparisonRouter from "./routes/CompsrisonRoutes.js"
-// import scientistRouter from "./routes/Scientist.routes.js"
 import bookRouter from "./routes/Books.routes.js"
 import scientistRouter from "./routes/Scientist.routes.js";
 
-// import { getAllScientists } from "./controllers/Scientist.controller.js";
 import { comparision } from "./models/comparision.model.js";
 import { CallTracker } from "assert";
 import { Scientist } from "./models/Scientist.model.js";
@@ -66,6 +64,7 @@ app.get("/", async (req, res) => {
 console.log(Scientist);
 
 // API Routes
+
 app.use("/api/users", UserRouter);
 app.use('/api/comparisons', comparisonRouter);
 app.use("/api/Books", bookRouter);

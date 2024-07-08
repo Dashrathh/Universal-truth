@@ -36,6 +36,14 @@ router.get('/adminPanel',(req,res) =>{
   res.render('adminPanel');
 });
 
+router.get('/comparionForm' ,(req,res) =>{
+  res.render('comparionForm');
+})
+
+router.get('/scientistsForm' ,(req,res) =>{
+  res.render('scientistsForm');
+})
+
 
 
 // * Logout user

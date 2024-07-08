@@ -98,9 +98,7 @@ a:hover {
     </form>
     
     <p id="errorMessage" style="color: red; display: none;"> Invalid username or password</p>
-    
-    <p>Don't have account ? <a href="/register">Register here</a></p>
-    
+  
 </div>  
 
       <script>
@@ -128,7 +126,8 @@ a:hover {
                     throw new Error('Invalid username or password or email')
                 }
 
-                window.location.href = '/adminPanel'
+                window.location.href = '/api/users/adminPanel'
+            
                 
             }  catch (error){
                 console.error('Login error:',error);

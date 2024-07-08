@@ -2,14 +2,15 @@
 
 // import { Router } from "express"
 import { Router } from "express";
-import {  createScientist,
+import {
+  createScientist,
   // getAllScientists,
   updateScientist,
   deleteScientist,
   getSingleScientist
- } from "../controllers/Scientist.controller.js"
+} from "../controllers/Scientist.controller.js"
 
- import { upload } from "../middlewares/multer.middleare.js"
+import { upload } from "../middlewares/multer.middleare.js"
 
 
 
@@ -17,10 +18,22 @@ const scientist = Router();
 
 scientist.route('/create').post(
   upload.fields([
-    { name: 'ScientistImage', maxCount: 1 },
-    { name: 'workingImage', maxCount: 1 },
-    { name: 'achivementImage', maxCount: 1 },
-    { name: 'evidenceImage', maxCount: 1 },
+    {
+      name: 'ScientistImage',
+      maxCount: 1
+    },
+    {
+      name: 'workingImage',
+      maxCount: 1
+    },
+    {
+      name: 'achivementImage',
+      maxCount: 1
+    },
+    {
+      name: 'evidenceImage',
+      maxCount: 1
+    },
     { name: 'evidence', maxCount: 10 }
   ]),
   createScientist

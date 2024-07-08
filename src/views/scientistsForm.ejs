@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Scientist</title>
+</head>
+<body>
+    
+    <h1>Create a New Scientist</h1>
+    
+    <form action="/api/scientists/create" method="POST">
+        <label for="cardname">Card Name:</label>
+        <input type="text" id="cardname" name="cardname"><br>
+
+        <label for="contribution">Contribution:</label><br>
+        <textarea id="contribution" name="contribution" rows="4" cols="50"></textarea><br>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="birth_year">Birth Year:</label>
+        <input type="text" id="birth_year" name="birth_year"><br>
+
+        <label for="death_year">Death Year:</label>
+        <input type="text" id="death_year" name="death_year"><br>
+
+        <label for="personalLife">Personal Life:</label><br>
+        <textarea id="personalLife" name="personalLife" rows="4" cols="50"></textarea><br>
+
+        <label for="their_work">Their Work:</label><br>
+        <textarea id="their_work" name="their_work" rows="4" cols="50"></textarea><br>
+
+        <label for="achivement">Achievements:</label><br>
+        <textarea id="achivement" name="achivement" rows="4" cols="50"></textarea><br>
+
+        <label for="ScientistImage">Scientist Image:</label>
+        <input type="file" id="ScientistImage" name="ScientistImage"><br>
+
+        <label for="workingImage">Working Image:</label>
+        <input type="file" id="workingImage" name="workingImage"><br>
+
+        <label for="achivementImage">Achievement Image:</label>
+        <input type="file" id="achivementImage" name="achivementImage"><br>
+
+        <label for="evidenceImage">Evidence Image:</label>
+        <input type="file" id="evidenceImage" name="evidenceImage"><br>
+
+        <button type="submit">Create Scientist</button>
+    </form>
+
+</body>
+</html>

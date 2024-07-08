@@ -28,11 +28,12 @@ const createScientist = asyncHandler(async (req, res) => {
     const workingImageLocalPath = req.files['workingImage'] ? req.files['workingImage'][0].path : null;
     const achivementImageLocalPath = req.files['achivementImage'] ? req.files['achivementImage'][0].path : null;
     const evidenceImageLocalPath = req.files['evidenceImage'] ? req.files['evidenceImage'][0].path : null;
-    const evidence = req.files['evidence'] ? req.files['evidence'].map(file => ({
-        evidenceImage: 'photo',
-        url: file.path,
-        description: req.body[`description${file.originalname}`],
-    })) : [];
+
+    // const evidence = req.files['evidence'] ? req.files['evidence'].map(file => ({
+    //     evidenceImage: 'photo',
+    //     url: file.path,
+    //     description: req.body[`description${file.originalname}`],
+    // })) : [];
 
     const ScientistImage = await uploadOnCloudinary(ScientistImageLocalPath);
     const achivementImage = await uploadOnCloudinary(achivementImageLocalPath);
@@ -53,7 +54,8 @@ if(!evidenceImage){
 
 
     const newScientist = await Scientist.create(
-        {
+        {   
+            
             name,
             birth_year,
             death_year,
@@ -64,7 +66,7 @@ if(!evidenceImage){
             achivement,
             achivementImage: achivementImage.url,
             evidenceImage: evidenceImage.url,
-            evidence,
+            // evidence,
             cardname,
             contribution
 

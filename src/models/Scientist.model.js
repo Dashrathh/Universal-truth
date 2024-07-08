@@ -49,23 +49,23 @@ const ScientistSchema = new Schema(
       required: true,
     },
 
-    evidence: [
-      {
-        evidenceImage: {
-          type: String, // Typw of evidence, e.g., "photo"
-          required: true,
-        },
+    // evidence: [
+    //   {
+    //     evidenceImage: {
+    //       type: String, // Typw of evidence, e.g., "photo"
+    //       required: true,
+    //     },
 
-        url: {
-          type: String, // url path to the photot
-          required: true,
-        },
-        description: {
-          type: String,
-          required: false,
-        },
-      },
-    ],
+    //     url: {
+    //       type: String, // url path to the photot
+    //       required: true,
+    //     },
+    //     description: {
+    //       type: String,
+    //       required: false,
+    //     },
+    //   },
+    // ],
   },
   {
     timestamps: true,
