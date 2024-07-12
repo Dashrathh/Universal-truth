@@ -4,50 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Scientist</title>
+    <style>
+        /* Reset some default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            padding: 10px;
+            margin-top: 40px;
+            height: 200px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        input[type="file"]::-webkit-file-upload-button:hover {
+            background-color: #0056b3;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    
-    <h1>Create a New Scientist</h1>
-    
-    <form action="/api/scientists/create" method="POST">
-        <label for="cardname">Card Name:</label>
-        <input type="text" id="cardname" name="cardname"><br>
+    <form action="/api/scientists/create" method="POST" enctype="multipart/form-data">
+        <h1>Create a New Scientist</h1>
 
-        <label for="contribution">Contribution:</label><br>
-        <textarea id="contribution" name="contribution" rows="4" cols="50"></textarea><br>
+        <label for="cardname">Title:</label>
+        <input type="text" id="cardname" name="title">
+
+        <label for="cardname">Card Name:</label>
+        <input type="text" id="cardname" name="cardname">
+
+        <label for="contribution">Contribution:</label>
+        <textarea id="contribution" name="contribution" rows="4" cols="50"></textarea>
         
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
+        <input type="text" id="name" name="name" required>
 
         <label for="birth_year">Birth Year:</label>
-        <input type="text" id="birth_year" name="birth_year"><br>
+        <input type="text" id="birth_year" name="birth_year">
 
         <label for="death_year">Death Year:</label>
-        <input type="text" id="death_year" name="death_year"><br>
+        <input type="text" id="death_year" name="death_year">
 
-        <label for="personalLife">Personal Life:</label><br>
-        <textarea id="personalLife" name="personalLife" rows="4" cols="50"></textarea><br>
+        <label for="personalLife">Personal Life:</label>
+        <textarea id="personalLife" name="personalLife" rows="4" cols="50"></textarea>
 
-        <label for="their_work">Their Work:</label><br>
-        <textarea id="their_work" name="their_work" rows="4" cols="50"></textarea><br>
+        <label for="their_work">Their Work:</label>
+        <textarea id="their_work" name="their_work" rows="4" cols="50"></textarea>
 
-        <label for="achivement">Achievements:</label><br>
-        <textarea id="achivement" name="achivement" rows="4" cols="50"></textarea><br>
+        <label for="achivement">Achievements:</label>
+        <textarea id="achivement" name="achivement" rows="4" cols="50"></textarea>
 
         <label for="ScientistImage">Scientist Image:</label>
-        <input type="file" id="ScientistImage" name="ScientistImage"><br>
+        <input type="file" id="ScientistImage" name="ScientistImage">
 
         <label for="workingImage">Working Image:</label>
-        <input type="file" id="workingImage" name="workingImage"><br>
+        <input type="file" id="workingImage" name="workingImage">
 
         <label for="achivementImage">Achievement Image:</label>
-        <input type="file" id="achivementImage" name="achivementImage"><br>
+        <input type="file" id="achivementImage" name="achivementImage">
+
 
         <label for="evidenceImage">Evidence Image:</label>
-        <input type="file" id="evidenceImage" name="evidenceImage"><br>
+        <input type="file" id="evidenceImage" name="evidenceImage">
+
+        <div id="evidenceSection">
+            <label>Evidence:</label><br>
+            <div class="evidence">
+                <input type="file" name="evidence" accept="image/*" required>
+                <input type="text" name="description" placeholder="Description"><br><br>
+            </div>
+        </div>
 
         <button type="submit">Create Scientist</button>
     </form>
-
 </body>
 </html>

@@ -24,6 +24,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 };
 
 // * ================ Register user ===============
+
 const registerUser = asyncHandler(async (req, res) => {
   const { fullname, username, email, password } = req.body;
   console.log(req.body);
@@ -48,7 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     username: username.toLowerCase(),
-    role :"admin"
+  
   });
 
   const createdUser = await User.findById(user._id).select(
@@ -59,10 +60,9 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Something went wrong while registering the user");
   }
 
-  return res
-    .status(201)
-    .json(new ApiResponse(200, createdUser, "User registered successfully"));
-});
+  res.redirect('/')
+
+})
 
 // * ================ Login user ===================
 const loginUser = asyncHandler(async (req, res) => {
@@ -99,21 +99,12 @@ const loginUser = asyncHandler(async (req, res) => {
     sameSite: "strict",
   };
 
-  return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
-    .json(
-      new ApiResponse(
-        200,
-        {
-          user: loggedInUser,
-          accessToken,
-          refreshToken,
-        },
-        "User logged in successfully"
-      )
-    );
+  if(user.role === 'admin'){
+    return res.redirect('/api/users/adminPanel')
+  }
+  res.redirect('/')
+  
+  
 });
 
 // * ================ Logout user ==================

@@ -4,40 +4,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Comparison</title>
+    <style>
+        /* Reset some default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Create a New Comparison</h1>
-    
-    <form action="/api/comparisons/createComparison" method="POST">
-        <label for="mordenField">Modern Field:</label>
-        <input type="text" id="mordenField" name="mordenField" required><br>
+    <form action="/api/comparisons/createComparison" method="POST" enctype="multipart/form-data">
+        <h1>Create a New Comparison</h1>
+        
+        <div>
+            <label for="cardTitle">Card title:</label>
+            <input type="text" id="title" name="cardTitle" required>
+        </div>
+        <div>
+            <label for="mordenVSancient">mordenVSancient:</label>
+            <input type="text" id="title" name="mordenVSancient" required>
+        </div>
+        <div>
+            <label for="title">Compare Ancient science and modern science:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
 
-        <label for="ancientField">Ancient Field:</label>
-        <input type="text" id="ancientField" name="ancientField" required><br>
+        <div>
+            <label for="mordenField">Modern Field:</label>
+            <input type="text" id="mordenField" name="mordenField" required>
+        </div>
 
-        <label for="mordenWorkingModel">Modern Working Model:</label>
-        <input type="text" id="mordenWorkingModel" name="mordenWorkingModel" required><br>
+        <div>
+            <label for="ancientField">Ancient Field:</label>
+            <input type="text" id="ancientField" name="ancientField" required>
+        </div>
 
-        <label for="ancientWorkingModel">Ancient Working Model:</label>
-        <input type="text" id="ancientWorkingModel" name="ancientWorkingModel" required><br>
+        <div>
+            <label for="mordenWorkingModel">Modern Working Model:</label>
+            <input type="text" id="mordenWorkingModel" name="mordenWorkingModel" required>
+        </div>
 
-        <label for="compareText">Comparison Text:</label>
-        <textarea id="compareText" name="compareText" required></textarea><br>
+        <div>
+            <label for="ancientWorkingModel">Ancient Working Model:</label>
+            <input type="text" id="ancientWorkingModel" name="ancientWorkingModel" required>
+        </div>
 
-        <label for="summary">Summary:</label>
-        <textarea id="summary" name="summary" required></textarea><br>
+        <div>
+            <label for="compareText">Comparison Text:</label>
+            <textarea id="compareText" name="compareText" required></textarea>
+        </div>
 
-        <label for="mordenImage">Modern Image:</label>
-        <input type="file" id="mordenImage" name="mordenImage" required><br>
+        <div>
+            <label for="summary">Summary:</label>
+            <textarea id="summary" name="summary" required></textarea>
+        </div>
 
-        <label for="ancientImage">Ancient Image:</label>
-        <input type="file" id="ancientImage" name="ancientImage" required><br>
+        <div>
+            <label for="mordenImage">Modern Image:</label>
+            <input type="file" id="mordenImage" name="mordenImage" required>
+        </div>
 
-        <label for="mordenWorkingImage">Modern Working Image:</label>
-        <input type="file" id="mordenWorkingImage" name="mordenWorkingImage" required><br>
+        <div>
+            <label for="ancientImage">Ancient Image:</label>
+            <input type="file" id="ancientImage" name="ancientImage" required>
+        </div>
 
-        <label for="ancientWorkingImage">Ancient Working Image:</label>
-        <input type="file" id="ancientWorkingImage" name="ancientWorkingImage" required><br>
+        <div>
+            <label for="mordenWorkingImage">Modern Working Image:</label>
+            <input type="file" id="mordenWorkingImage" name="mordenWorkingImage" required>
+        </div>
+
+        <div>
+            <label for="ancientWorkingImage">Ancient Working Image:</label>
+            <input type="file" id="ancientWorkingImage" name="ancientWorkingImage" required>
+        </div>
 
         <button type="submit">Create Comparison</button>
     </form>

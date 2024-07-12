@@ -101,40 +101,7 @@ a:hover {
   
 </div>  
 
-      <script>
-        const loginForm = document.getElementById('loginForm');
-        const errorMessage = document.getElementById('errorMessage')
-
-        loginForm.addEventListener('submit' ,async (event) =>{
-            event.preventDefault()
-            const formData = new FormData(loginForm);
-
-            const username = formData.get('username');
-            const password = formData.get('password');
-            const email = formData.get('email');
-
-            try{
-                const response = await fetch('/api/users/login', {
-                    method: 'POST',
-                    headers:{
-                        'Content-Type': 'application/json'
-                    },
-                    body:JSON.stringify({username,email,password})
-                });
-
-                if(!response.ok) {
-                    throw new Error('Invalid username or password or email')
-                }
-
-                window.location.href = '/api/users/adminPanel'
-            
-                
-            }  catch (error){
-                console.error('Login error:',error);
-                errorMessage.style.display = 'block'
-            }
-        });
-      </script>
+      
     
 </body>
 </html>

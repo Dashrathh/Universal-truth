@@ -2,6 +2,11 @@ import mongoose, { Schema } from "mongoose";
 
 const ScientistSchema = new Schema(
   {
+    title:{
+      type:String,
+      required:true
+    },
+    
     cardname:{
       type:String,
       required:true
@@ -49,23 +54,19 @@ const ScientistSchema = new Schema(
       required: true,
     },
 
-    // evidence: [
-    //   {
-    //     evidenceImage: {
-    //       type: String, // Typw of evidence, e.g., "photo"
-    //       required: true,
-    //     },
+    evidence: [
+      {
+        evidenceImage: {
+          type: String, // Typw of evidence, e.g., "photo"
+          required: true,
+        },
 
-    //     url: {
-    //       type: String, // url path to the photot
-    //       required: true,
-    //     },
-    //     description: {
-    //       type: String,
-    //       required: false,
-    //     },
-    //   },
-    // ],
+        description: {
+          type: String,
+          required: false,
+  },
+      },
+    ],
   },
   {
     timestamps: true,

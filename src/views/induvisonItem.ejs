@@ -3,21 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Scientist Profile</title>
+    <style>
+        .scientist-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .scientist-card img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+        .scientist-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .scientist-card p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+        .scientist-card p strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="scientist-card">
-        <img src="<%= scientist.ScientistImage %>" alt="<%= scientist.name %>">
-        <h2><%= scientist.name %></h2>
-        <p>Birth Year: <%= scientist.birth_year %></p>
-        <p>Death Year: <%= scientist.death_year %></p>
-        <p>Personal Life: <%= scientist.personalLife %></p>
-        <p>Their Work: <%= scientist.their_work %></p>
-        <p>Achievement: <%= scientist.achivement %></p>
-        <img src="<%= scientist.achivementImage %>" alt="Achievement Image">
-        <img src="<%= scientist.workingImage %>" alt="Working Image">
-        <img src="<%= scientist.evidenceImage %>" alt="Evidence Image">
-        <p>Contribution: <%= scientist.contribution %></p>
+    <div class="container">
+        <div class="scientist-card">
+            <img class="scientist-image" src="<%= scientist.ScientistImage %>" alt="<%= scientist.name %>">
+            <h2 class="scientist-name"><%= scientist.name %></h2>
+            <p><strong>Birth Year:</strong> <%= scientist.birth_year %></p>
+            <p><strong>Death Year:</strong> <%= scientist.death_year %></p>
+            <p><strong>Personal Life:</strong> <%= scientist.personalLife %></p>
+            <p><strong>Their Work:</strong> <%= scientist.their_work %></p>
+            <p><strong>Achievement:</strong> <%= scientist.achivement %></p>
+            <img class="achievement-image" src="<%= scientist.achivementImage %>" alt="<%= scientist.name %> achievement image">
+            <img class="evidence-image" src="<%= scientist.evidenceImage %>" alt="<%= scientist.name %> evidence image">
+            <img class="evidence-image" src="<%= scientist.workingImage %>" alt="<%= scientist.name %> evidence image">
+
+            <p><strong>Description:</strong> <%= scientist.description %></p>
+
+        </div>
+        <div class="comment-section">
+
+            <form action="/api/scientists/comment/<%= scientist._id %>" method="POST">
+            
+            <textarea id="commentText" name="commentText" rows="4" cols="50"></textarea>
+            <button type="submit">Post Comment</button>
+
+        </form>
+        </div>
+            
+        </div>
+        
     </div>
 </body>
 </html>

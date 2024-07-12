@@ -45,10 +45,11 @@ app.get("/", async (req, res) => {
   const scientists = await Scientist.find();
   const Books = await AncientBook.find();
   const user = await User.find()
-  console.log("comparison: ", comparisons)
-  console.log("sci : ", scientists);
-  console.log("book :", Books);
-  console.log("user :", user);
+  
+  // console.log("comparison: ", comparisons)
+  // console.log("sci : ", scientists);
+  // console.log("book :", Books);
+  // console.log("user :", user);
 
   res.render("UTindex", {
     title: "Universaltruth",

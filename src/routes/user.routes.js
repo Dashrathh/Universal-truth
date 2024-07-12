@@ -44,6 +44,10 @@ router.get('/scientistsForm' ,(req,res) =>{
   res.render('scientistsForm');
 })
 
+router.get('/BookForm' ,(req,res) =>{
+  res.render('BookForm');
+})
+
 
 
 // * Logout user

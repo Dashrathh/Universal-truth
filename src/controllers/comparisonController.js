@@ -3,10 +3,14 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { Comment } from "../models/Comment.model.js";
 
 // * 1: get comaprison
 const createComparison = asyncHandler(async (req, res) => {
   const {
+    cardTitle,
+    mordenVSancient,
+    title,
     mordenField,
     ancientField,
     mordenWorkingModel,
@@ -17,15 +21,17 @@ const createComparison = asyncHandler(async (req, res) => {
 
   //   image upload on cloudinary for mordenFiled and Ancient field
 
-  const mordenImageLocalPath = req.files?.mordenImage?.[0]?.path;
-  const ancientImageLocalPath = req.files?.ancientImage?.[0]?.path;
-  const mordenWorkingImageLocalPath = req.files?.mordenWorkingImage?.[0]?.path;
-  const ancientWorkingImageLocalPath = req.files?.ancientWorkingImage?.[0]?.path;
+  const mordenImageLocalPath = req.files?.mordenImage[0]?.path;
+  const ancientImageLocalPath = req.files?.ancientImage[0]?.path;
+  const mordenWorkingImageLocalPath = req.files?.mordenWorkingImage[0]?.path;
+  const ancientWorkingImageLocalPath = req.files?.ancientWorkingImage[0]?.path;
 
-  console.log(mordenImageLocalPath);
-  console.log(ancientImageLocalPath);
-  console.log(mordenWorkingImageLocalPath);
-  console.log(ancientWorkingImageLocalPath);
+  console.log(req.files);
+
+  // console.log(mordenImageLocalPath);
+  // console.log(ancientImageLocalPath);
+  // console.log(mordenWorkingImageLocalPath);
+  // console.log(ancientWorkingImageLocalPath);
 
   if (
     !mordenImageLocalPath ||
@@ -50,11 +56,15 @@ const createComparison = asyncHandler(async (req, res) => {
     !mordenImage ||
     !ancientImage ||
     !mordenWorkingImage ||
-    !ancientWorkingImage
-  ) {
+    !ancientWorkingImage ) 
+  {
     throw new ApiError(400, " All immage file are required");
   }
+
   const newComparison = await comparision.create({
+    cardTitle,
+    mordenVSancient,
+    title,
     mordenField,
     mordenImage: mordenImage.url,
     ancientField,
@@ -71,7 +81,8 @@ const createComparison = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(new ApiResponse(200), createComparison, "All creat successfuly");
-});
+})
+
 
 const getAllComparisons = asyncHandler(async (req, res) => {
   // const comparisons = await comparision.find();
@@ -99,6 +110,9 @@ const getComparisonById = asyncHandler(async (req, res) => {
 const updateComparisonById = asyncHandler(async (req, res) => {
   const { comparisonId } = req.params;
   const {
+    mordenVSancient,
+    cardTitle,
+    title,
     mordenField,
     ancientField,
     mordenWorkingModel,
@@ -110,6 +124,9 @@ const updateComparisonById = asyncHandler(async (req, res) => {
   const files = req.files;
 
   const updatedData = {
+    mordenVSancient,
+    cardTitle,
+    title,
     mordenField,
     ancientField,
     mordenWorkingModel,
@@ -173,6 +190,24 @@ const deleteCompariosn = asyncHandler(async (req, res) => {
       "Comparison deleted successfully"
     );
 });
+
+
+    //   comparison comment 
+
+    const comparisonComment = asyncHandler(async(req,res) =>{
+
+      const {comparisionId} = req.params;
+      const {commentText} = req.body;
+      const {userId} = req.user.id;
+
+      const compareComment = await Comment.create({
+        owener:userId,
+        commentText,
+        comparison:comparisionId
+      })
+
+
+    })
 
 export {
   createComparison,

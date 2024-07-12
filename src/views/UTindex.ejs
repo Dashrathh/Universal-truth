@@ -16,6 +16,13 @@
   </div>
 </section>
 
+<!--  section 1 compare vedic scince and morden science -->
+
+ <!-- section 1 -->
+
+ <!-- intro card -->
+
+
 <div class="introduction">
   <div class="introcard">
     <h4>This is comparison between Vedic and Modern Science</h4>
@@ -27,22 +34,21 @@
 <section class="compare">
   <div class="compare-wrapper">
     <% comparisons.forEach(comparison => { %>
-      <li>
+      
       <a href="/api/comparisons/list/<%= comparison._id %>" id="<%= comparison._id %>">
       <div class="compare-slide">
         <div class="com">
           <div class="com-image">
-            <img
-              src="<%= comparison.mordenImage %>"
+            <img src="<%= comparison.mordenImage %>"
               />
           </div>
           <div class="com_content">
-            <span class="com_title"><%= comparison.title %></span>
-            <p class="com_text"><%= comparison.summary %></p>
+            <span class="com_title"><%= comparison.cardTitle %></span>
+            <p class="com_text"><%= comparison.mordenVSancient %></p>
           </div>
         </div>
       </a>
-    </li>
+    
     </div>
     <% } )%>  
   </div>
@@ -89,7 +95,8 @@
 <!-- Ancient Books Section -->
 <h3>Ancient Indian Books</h3>
 <section class="swiper mySwiper">
-  <i class="fa fa-angle-left" style="font-size: 24px"></i>
+  <i class="fa fa-angle-left" style="font-size:24px"></i>
+
   <div class="swiper-wrapper">`
     <% Books.forEach(book => { %>
       <a href="/api/Books/list/<%= book._id %>"></a>
@@ -105,7 +112,7 @@
     </div>
     <% } )%>
   </div>
-  <div class="button-s">
+  <div class="button-B">
     <span class="book-btn" id="leftenern-btn">&#129128;</span>
     <span class="book-btn" id="rightist-btn">&#129130;</span>
   </div>

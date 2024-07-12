@@ -2,9 +2,19 @@ import mongoose, { Schema } from "mongoose";
 
 const CamparisonSchema = new Schema(
   {
-    title:{
-      type:String,
-      required:true,
+
+    cardTitle: {
+      type: String,
+      required: true
+    },
+    mordenVSancient: {
+      type: String,
+      required: true
+    },
+
+    title: {
+      type: String,
+      required: true,
     },
     mordenField: {
       type: String,

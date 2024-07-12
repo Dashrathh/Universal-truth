@@ -4,6 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin panel</title>
+    <style>
+        /* Reset some default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        div {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
@@ -11,12 +59,17 @@
 
     <div class="compare">
         <h2>This is a comparionForm section</h2>
-        <a href="/api/users/comparionForm">Comparison form</a></p>
+        <a href="/api/users/comparionForm">Comparison form</a>
     </div>
     
     <div class="Scientist">
         <h2>This is a Scientist section</h2>
-        <a href="/api/scientists/scientistsForm">Scientists form</a></p>
+        <a href="/api/users/scientistsForm">Scientists form</a>
+    </div>
+    
+    <div class="Books">
+        <h2>This is Books section</h2>
+        <a href="/api/users/BookForm">Books form</a>
     </div>
     
 </body>
