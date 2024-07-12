@@ -53,7 +53,7 @@ scientist.route('/scientistId').put(updateScientist)
 
 scientist.route('/:scientistId').delete(deleteScientist)
 
-scientist.route('/comment').post(scientistComment)
+scientist.route('/:scientistId/comment').post(scientistComment)
 scientist.route('/scientistId/:id').get(getComment)
 
 

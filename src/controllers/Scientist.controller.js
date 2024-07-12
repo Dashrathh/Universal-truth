@@ -144,12 +144,14 @@ const deleteScientist = asyncHandler(async (req, res) => {
 const scientistComment = asyncHandler(async (req, res) => {
     const { scientistId } = req.params;
     const { commentText } = req.body;
-
+    
+    
     // Ensure the user is authenticated
     if (!req.user) {
         throw new ApiError(401, "User not authenticated");
     }
-    const userId = req.user.id;
+    const userId = req.user._id;
+    console.log(userId);
 
     const scientist = await Scientist.findById(scientistId);
     if (!scientist) {
