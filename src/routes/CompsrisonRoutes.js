@@ -1,4 +1,5 @@
 
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 import express from "express";
 
 import {
@@ -7,14 +8,15 @@ import {
   getComparisonById,
   updateComparisonById,
   deleteCompariosn,
+  comparisionComment
 } from "../controllers/comparisonController.js";
 import { upload } from "../middlewares/multer.middleare.js";
 import router from "../routes/user.routes.js";
 
+
 const compare = express.Router(); 
+    // compare.use(verifyJWT) 
 
-
-// * creat new camparion router
 compare.route("/createComparison").post(
   upload.fields([
     {
@@ -69,7 +71,8 @@ compare.route('/list/:id').get(getComparisonById);
 // * Route to delete a comparison by id
 compare.route("/:comparisonId").delete(deleteCompariosn);
 
-// * Route to get a comparison by id
-// compare.route("/", getComparisonById);
+//  create comment
+
+ compare.route('/:comparisonId/comment').post(comparisionComment)
 
 export default compare;

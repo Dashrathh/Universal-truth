@@ -6,6 +6,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import {User} from "../models/user.model.js"
 
 import { Comment } from "../models/Comment.model.js";
+import scientist from "../routes/Scientist.routes.js";
 
 // import scientist from "../routes/Scientist.routes.js";
 
@@ -104,7 +105,11 @@ const evidences = {evidenceImage:evidenceImage.url ,description}
 
 const getSingleScientist = asyncHandler(async (req, res) => {
     const scientist = await Scientist.findById(req.params.id).select("");
-    res.render('induvisonItem', { scientist });
+    const comments = await Comment.find({scientistId :req.params.id }).populate('owner')
+    
+    console.log(comments);
+
+    res.render('induvisonItem', { scientist ,comments });
     // console.log(scientist);
 
 
@@ -150,6 +155,7 @@ const scientistComment = asyncHandler(async (req, res) => {
     if (!req.user) {
         throw new ApiError(401, "User not authenticated");
     }
+    
     const userId = req.user._id;
     console.log(userId);
 
@@ -161,18 +167,25 @@ const scientistComment = asyncHandler(async (req, res) => {
     const comment = await Comment.create({
         owner: userId,
         commentText,
-        scientist: scientistId,
+         scientistId,
     });
 
-    res.status(201).json(new ApiResponse(201, "Comment created successfully", comment));
+// app.use('/api/scientists', scientistRouter);
+    res.redirect('/api/scientists/'+ scientistId )
 });
 
     //  get comment
 
-    const getComment = asyncHandler(async(req,res) =>{
-        const comment =  await Comment.findById(req.params.id)
-        res.render('induvisonItem',{ comment });
-    })
+    // const getComment = asyncHandler(async(req,res) =>{
+    //     const {scientistId} = req.params;
+    //     const comments = await Comment.find({scientistId }).populate('owner')
+    //     const scientist = await scientist.findById(scientistId);
+    //     console.log(comments);
+    //     if(!scientist){
+    //         throw new ApiError(404, "scientist not found")
+    //     }
+    //     res.render('induvisonItem',{ comments, scientist });
+    // });
 
 
 export {
@@ -181,5 +194,5 @@ export {
     deleteScientist,
     getSingleScientist,
     scientistComment,
-    getComment
+    // getComment
 };

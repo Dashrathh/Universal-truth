@@ -14,18 +14,20 @@ const commentSchema = new Schema(
       required: true,
     },
 
-    // comparison: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: comparision,
-    // },
-    // scientist: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: Scientist,
-    // },
-// book: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: AncientBook,
-    // },
+    comparisonId: {
+      type: Schema.Types.ObjectId,
+      ref: "Comparision",
+    },
+
+    scientistId: {
+      type: Schema.Types.ObjectId,
+      ref: "Scientist",
+    },
+
+bookId: {
+      type: Schema.Types.ObjectId,
+      ref: "AncientBook",
+  },
   },
 
   {

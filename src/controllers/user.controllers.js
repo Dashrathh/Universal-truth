@@ -100,11 +100,12 @@ const loginUser = asyncHandler(async (req, res) => {
   };
 
   if(user.role === 'admin'){
-    return res.redirect('/api/users/adminPanel')
+
+   return res.cookie("accessToken", accessToken,options).redirect('/api/users/adminPanel')
+    
   }
-  res.redirect('/')
   
-  
+  res.cookie("accessToken",accessToken,options).redirect('/')
 });
 
 // * ================ Logout user ==================

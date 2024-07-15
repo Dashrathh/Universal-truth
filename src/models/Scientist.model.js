@@ -22,11 +22,11 @@ const ScientistSchema = new Schema(
     },
 
     birth_year: {
-      type: Number,
+      type: String,
       required: true,
     },
     death_year: {
-      type: Number,
+      type: String,
     },
     personalLife: {
       type: String,

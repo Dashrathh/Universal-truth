@@ -9,10 +9,8 @@ import {
   deleteScientist,
   getSingleScientist,
   scientistComment,
-  getComment
+// getComment
 
-  
-  
 
 } from "../controllers/Scientist.controller.js"
 
@@ -20,9 +18,9 @@ import { upload } from "../middlewares/multer.middleare.js"
 import router from "./user.routes.js";
 
 
-router.use(verifyJWT)
 
 const scientist = Router();
+scientist.use(verifyJWT)
 
 scientist.route('/create').post(
   upload.fields([
@@ -54,7 +52,8 @@ scientist.route('/scientistId').put(updateScientist)
 scientist.route('/:scientistId').delete(deleteScientist)
 
 scientist.route('/:scientistId/comment').post(scientistComment)
-scientist.route('/scientistId/:id').get(getComment)
+
+// scientist.route('/:scientistId/comment').get(getComment)
 
 
 

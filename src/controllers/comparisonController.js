@@ -4,6 +4,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { Comment } from "../models/Comment.model.js";
+import scientist from "../routes/Scientist.routes.js";
 
 // * 1: get comaprison
 const createComparison = asyncHandler(async (req, res) => {
@@ -96,14 +97,15 @@ const getAllComparisons = asyncHandler(async (req, res) => {
  });
 // // * 3: get comparison by ID
 const getComparisonById = asyncHandler(async (req, res) => {
-  // const {comparisionId} = req.params;
   const Comparison = await comparision.findById(req.params.id);
-  console.log(Comparison);
-  // console.log(Comparison.mordenField);
-  if (!Comparison) {
-    throw new ApiError(400, "comparion not found");
-  }
-  res.render("createComparison",{Comparison});
+
+  const comments = await Comment.find({ comparisonId: req.params.id }).populate('owner');
+
+  console.log(comments);
+  // if (!Comparison) {
+  //   throw new ApiError(400, "comparion not found");
+  // }
+  res.render("createComparison",{Comparison ,comments});
 });
 
 // * 4. Update Comparison by ID
@@ -194,20 +196,35 @@ const deleteCompariosn = asyncHandler(async (req, res) => {
 
     //   comparison comment 
 
-    const comparisonComment = asyncHandler(async(req,res) =>{
 
-      const {comparisionId} = req.params;
-      const {commentText} = req.body;
-      const {userId} = req.user.id;
 
-      const compareComment = await Comment.create({
-        owener:userId,
+
+
+    const comparisionComment = asyncHandler(async(req,res) =>{
+
+      const {comparisonId} = req.params
+      const{ commentText} = req.body;
+
+      if(!req.user){
+        throw new ApiError(404, "User not authenticated")
+      }
+
+      const userId = req.user._id;
+      const comaprison = await comparision.findById(comparisonId)
+
+      if(!scientist){
+        throw new ApiError(404, "comparison not found")
+      }
+      const comment = await Comment.create({
+        owner :userId,
         commentText,
-        comparison:comparisionId
-      })
+        comparisonId
+      });
 
+      res.redirect('/api/comparisons/' + comparisonId)
 
-    })
+        });
+
 
 export {
   createComparison,
@@ -215,4 +232,5 @@ export {
   getComparisonById,
   updateComparisonById,
   deleteCompariosn,
+  comparisionComment
 };
