@@ -20,7 +20,6 @@ import router from "./user.routes.js";
 
 
 const scientist = Router();
-scientist.use(verifyJWT)
 
 scientist.route('/create').post(
   upload.fields([
@@ -51,7 +50,7 @@ scientist.route('/scientistId').put(updateScientist)
 
 scientist.route('/:scientistId').delete(deleteScientist)
 
-scientist.route('/:scientistId/comment').post(scientistComment)
+scientist.route('/:scientistId/comment').post(verifyJWT,scientistComment)
 
 // scientist.route('/:scientistId/comment').get(getComment)
 

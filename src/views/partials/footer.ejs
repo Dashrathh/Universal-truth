@@ -1,11 +1,11 @@
 <footer>
 
     <!-- <script src="/js/truth.js"></script> -->
-    <script> 
+    <script>
     //   section 1 card slider
-    let scrollbar = document.querySelector('.campare');
-    let leftBotton = document.getElementById("left-botton");
-    let rightBotton = document.getElementById("right-botton");
+    let scrollbar = document.querySelector('.campare-wrapper');
+    let leftBotton = document.getElementById("left-btn");
+    let rightBotton = document.getElementById("right-btn");
 
     scrollbar.addEventListener("wheel",(evt) => {
       evt.preventDefault();
@@ -25,34 +25,33 @@
     });
 
     let scrollContainer = document.querySelector(".h-swiper-wrapper");
-    let leftbtn = document.getElementById("left-btn");
-    let rightbtn = document.getElementById("right-btn");
+    let leftbtn = document.getElementById("left-btn2");
+    let rightbtn = document.getElementById("right-btn2");
 
 
     scrollContainer.addEventListener("wheel",(evt) =>{
       evt.preventDefault();
       scrollContainer.scrollLeft += evt.deltaX;
     })
-
+    
     rightbtn.addEventListener("click",()=>{
       scrollContainer.style.scrollBehavior = "smooth";
       scrollContainer.scrollLeft +=700;
     })
     leftbtn.addEventListener("click",()=>{
       scrollContainer.style.scrollBehavior = "smooth";
-
+      
       scrollContainer.scrollLeft -=700;
     })
-
-</script>
-
-          <!-- <script src="truth.js"></script> -->
-
-            <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
-           <script> var swiper = new Swiper(".mySwiper", {
-               loop: true,
-               autoplay: {
+    
+    
+ 
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js">
+          var swiper = new Swiper(".mySwiper", {
+             loop: true,
+             autoplay: {
                    delay: 3000, // Adjust the delay between slides in milliseconds
                    disableOnInteraction: false, // Enable autoplay even if the user interacts with the swiper
                },
@@ -64,12 +63,13 @@
                    el: ".swiper-pagination",
                },
            });
-
+           
            //   searchcontainer  java script
-             const slidirecontainer = document.getElementById('swiper-wrapper')
-             const rightesBotton = document.getElementById('righttern-btn');
-
-
- </script>
+           const slidirecontainer = document.getElementById('swiper-wrapper')
+           const rightesBotton = document.getElementById('righttern-btn');
+           
+           
+           <script/>
+ 
 
 </script>

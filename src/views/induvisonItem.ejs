@@ -153,12 +153,24 @@
                 </p>
                 <h3>Their Work</h3>
                 <img class="workingImage" src="<%= scientist.workingImage %>" alt="<%= scientist.name %> working image">
-                <p class="content">
-                    <%= scientist.their_work %>
-                </p>
+                
+                <% if (scientist)   { %>
+                    <div class="their-work" >
+                        <%= scientist.their_work %>
+                    </div>
+                    <script>
+                        
+                var tW = document.querySelector("their-work")
+                
+                tW.innerHTML = <%= scientist.their_work %>
+                </script>
+                
+                <% } %>
+
+                
                 <h3>Achievement</h3>
                 <img class="achievement-image" src="<%= scientist.achivementImage %>" alt="<%= scientist.name %> achievement image">
-                <p class="content">
+                <p class="content" >
                     <%= scientist.achivement %>
                 </p>
                 <h3>Description</h3>
@@ -175,4 +187,6 @@
                 <textarea id="commentText" name="commentText" rows="4" cols="50"></textarea>
                 <button type="submit">Post Comment</button>
             </form>
-            <p>Comments:</p
+            <p>Comments:</p>
+
+                
