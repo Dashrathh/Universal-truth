@@ -10,7 +10,7 @@
   <!-- <script src="/js/cardslider.js" defer></script>  -->
 
   <style>
-    :root {
+     :root {
       /** Background colors */
       --bg-wild-blue-yonder: hsla(216, 33%, 68%, 1);
       --bg-carolina-blue: hsla(199, 89%, 49%, 1);
@@ -74,6 +74,8 @@
       font-family: var(--fontFamily-noto_sans);
       background: cover;
       line-height: var(--lineHeight-4);
+      overflow-x: hidden; /* Prevent horizontal scrollbar */
+
       /* box-sizing: border-box; */
 
     }
@@ -305,7 +307,7 @@
       width: auto;
       display: flex;
       align-items: center;
-      overflow-x: scroll;
+      /* overflow-x: scroll; */
       cursor: pointer;
     }
 
@@ -321,8 +323,8 @@
       /* box-shadow: 0 0 2em #d9d7e633; */
       display: flex;
       /* align-items: center; */
-      justify-content: flex-end;
-      flex-direction: column;
+      /* justify-content: flex-end; */
+      /* flex-direction: column; */
       margin: 10px 20px;
       /* margin-left: -10px; */
       flex: none;
@@ -454,8 +456,8 @@
     }
 
     .card_image {
-      width: 13rem;
-      height: 15rem;
+      width: 14.5rem;
+      height: 16rem;
       object-fit: cover;
     }
 
@@ -561,24 +563,31 @@
 
 
     /* =============== Anciet book card section ============== */
+
+
     .swiper-wrapper {
       display: flex;
       flex-direction: row;
       align-items: center;
+      
     }
+    .swiper-wrapper::-webkit-scrollbar {
+      display: none;
+     overflow-x: scroll;
 
-
+    }
+    
     .swiper {
 
-
+      justify-content: flex-end;
       background-color: var(--border-prussian-blue);
       color: white;
-      padding: 10px;
+      padding: 8px;
       border-radius: 10px;
-      width: 1300px;
+      width: 1200px;
       height: 400px;
-      margin: 10px;
-      margin-left: 105px; 
+      /* margin: 10px; */
+      margin-left: 80px; 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -602,6 +611,7 @@
       border-radius: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       margin: 0 10px;
+      margin-top: 5px;
       overflow: hidden;
       margin-top: 50px;
       align-items: center;
@@ -615,37 +625,34 @@
 
     /* Card image */
     .cord__image img {
-      width: 100%;
-      height: 200px;
+      width: 200px;
+      height: 240px;
       object-fit: cover;
       border-radius: 10px 10px 0 0;
       /* Rounded corners for the top */
     }
 
     /* Card content */
-    .cord__content {
-      padding: 20px;
-      text-align: center;
-    }
+  
 
-    .cord__content {
+    /* .cord__content {
       font-size: 1.5rem;
       font-weight: 500;
       color: #333;
       margin-bottom: 5px;
-    }
+    } */
 
-    .cord__name {
-      font-size: 1rem;
+    /* .cord__name {
+      font-size: 0.5rem;
       color: #666;
       margin-bottom: 10px;
-    }
+    } */
 
     .cord__text {
-      font-size: 1rem;
+      /* font-size: 1rem; */
       color: #888;
-      line-height: 1.5;
-      margin-bottom: 20px;
+      /* line-height: 1.5; */
+      /* margin-bottom: 20px; */
     }
 
     .Anci-b {
@@ -654,10 +661,6 @@
       text-align: center;
     }
 
-    h2 {
-      font-size: 2rem;
-      margin: 0;
-    }
 
     a {
       text-decoration: none;
@@ -715,15 +718,19 @@
 
 
 
-    /*  section 1 camparison card */
+        /* =============== section 1 camparison card */
 
 
     .compare-wrapper {
       height: 400px;
+      margin-right: 50px;
       display: flex;
       align-items: center;
       transition: transform 0.5s ease;
       margin-left: 300px;
+     overflow-x: scroll;
+     scrollbar-width: none;    
+     
     }
 
     .com {
@@ -732,7 +739,7 @@
       background-color: var(--bg-oxford-blue);
       border-radius: 1em;
       display: flex;
-      align-items: center;
+      /* align-items: center; */
       justify-content: flex-end;
       flex-direction: column;
       margin: 10px 20px;
@@ -789,6 +796,8 @@
       width: 75%;
       height: 100%;
       overflow: hidden;
+      overflow-x: scroll;
+  
       margin-left: 330px;
 
     }
@@ -806,14 +815,10 @@
     .campare-wraper::-webkit-scrollbar {
       display: none;
     }
+      /* scroll-behavior: smooth; */
 
-    .campare-wrapper {
-      width: auto;
-      display: flex;
-      align-items: center;
-      overflow-x: scroll;
-      cursor: pointer;
-    }
+      /* -webkit-overflow-scrolling: touch; */
+
 
 
     .fa {
@@ -886,4 +891,56 @@
       <a href="/api/users/register/<%= user._id %>" class="login-link">sign in</a>
     </div>
 
-  </header>
+  </header> 
+   
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="https://res.cloudinary.com/warrior90/image/upload/v1720525424/reaserch_2_zkgr0h.png" width="30px"
+          height="0px" srcset="">
+      </div>
+
+      <ul class="navbar-list">
+        <li>
+          <a href="#home" class="navbar-link hover-1">Home</a>
+        </li>
+        <li>
+          <a href="#biography" class="navbar-link hover-1">Biography</a>
+        </li>
+        <li>
+          <a href="#Research" class="navbar-link hover-1">Research</a>
+        </li>
+        <li>
+          <a href="#AncientBook" class="navbar-link hover-1">Ancient Book</a>
+        </li>
+        <li>
+          <a href="#aboutUs" class="navbar-link hover-1">About Us</a>
+        </li>
+      </ul>
+
+
+    </div>
+
+
+    <!--------    Serch -----  -->
+
+    <div class="searchcontainer">
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="Search">
+        <img src="https://res.cloudinary.com/warrior90/image/upload/v1720525424/reaserch_2_zkgr0h.png" width="0px"
+          class="serchicon">
+
+      </div>
+      <div id="result"></div>
+    </div>
+
+    <div class="Login">
+      <a href="/api/users/register/<%= user._id %>" class="login-link">sign in</a>
+    </div>
+
+  </header> fix this

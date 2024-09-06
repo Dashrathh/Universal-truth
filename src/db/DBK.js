@@ -8,8 +8,7 @@ const connectDB = async () => {
       `${process.env.MONGODB_URL}/${DB_NAME}`,
     );
 
-    console.log(
-      `\n MngoDB connected !! great work You are true warrior DB HOST: ${connectionInstance.connection.host}`,
+    console.log(`\n MngoDB connected !! great work You are true warrior DB HOST: ${connectionInstance.connection.host}`,
     );
   } catch (error) {
     console.log("MONGODB connection eror he  bhai", error);

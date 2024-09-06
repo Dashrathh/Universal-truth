@@ -1,7 +1,7 @@
 {
   "name": "backend-practice-blog",
   "version": "1.0.0",
-  "description": "bakcend blog website practice",
+  "description": "bakcend blog website ",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "braces": "^3.0.3",
     "cloudinary": "^2.2.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

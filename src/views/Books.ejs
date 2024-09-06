@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,71 +8,102 @@
     <style>
         /* General styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            /* margin: 0; */
-            /* padding: 0; */
-            /* background-color: #f4f4f4; */
-            /* color: #333; */
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
             width: 80%;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: 20px auto;
             padding: 20px;
-            /* background: #fff; */
-            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            margin-top: 20px;
         }
 
         /* Title and year styles */
         .title {
-            color: #333;
+            font-size: 2em;
+            color: #2c3e50;
             margin-bottom: 10px;
+            text-align: center;
         }
 
         .year {
-            color: #777;
+            font-size: 1.2em;
+            color: #7f8c8d;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         /* Paragraph styles */
-        .info,
-        .invention {
+        .info, .invention {
             font-size: 1.1em;
             margin-bottom: 15px;
+            text-align: justify;
         }
 
         /* Invention heading */
         .invention-heading {
-            font-size: 1.3em;
+            font-size: 1.4em;
             margin-top: 20px;
-            margin-bottom: 20px;
-            color: #555;
+            margin-bottom: 15px;
+            color: #34495e;
+            text-align: center;
         }
 
         /* Image styles */
         .book-image {
-            max-width: 50%;
+            max-width: 100%;
             height: auto;
-            border-radius: 10px;
+            border-radius: 8px;
             display: block;
-            margin: 0 auto;
+            margin: 20px auto;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .book-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 1.8em;
+            }
+
+            .year {
+                font-size: 1em;
+            }
+
+            .info, .invention {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2 class="title"><%= book.title %></h2>
         <h2 class="year"><%= book.written_year %></h2>
         <p class="info"><%= book.BookInfo %></p>
+        <img class="book-image" src="<%= book.BookImage %>" alt="Cover Image of <%= book.title %>">
+        <p class="invention-heading">Ancient Invention</p>
         <p class="invention"><%= book.Ancient_invention %></p>
-        <h3 class="invention-heading"><%= book.Ancient_invention %></h3>
-        <img class="book-image" src="<%= book.BookImage %>" alt="Book Image">
+        <img class="book-image" src="<%= book.Ancient_inventionImage %>" alt="Image of <%= book.Ancient_invention %>">
+        <p class="info"><%= book.description %></p>
     </div>
-
-
-    </form>
 </body>
+
 </html>

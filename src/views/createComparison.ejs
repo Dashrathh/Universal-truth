@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,17 +8,15 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            /* background-color: #f4f4f4; */
+            background-color: #fff;
             margin: 0;
             padding: 20px;
         }
 
         .comparison-card {
-            /* border: 1px solid #ccc; */
             border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
-            /* background-color: #fff; */
+            /* margin-bottom: 20px; */
             /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
         }
 
@@ -27,35 +24,68 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-        }
-
-        .comparison-section .text {
-            flex: 2;
-        }
-
-      image {
-            /* flex: 1; */
-            /* text-align: right; */
-            width: 100px;
-        }
-
-        .comparison-section h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .comparison-section p {
-            font-size: 16px;
-            line-height: 1.5;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
         }
 
         .comparison-section img {
-           width:300px;
+            width: 100%;
             height: auto;
-            /* display: block; */
-            /* margin-left: 10px; */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .imageComparison{
+            justify-content: center;
+             /* padding-left: 300px; */
+             /* width: 000px; */
+             width: 400px;
+        }
+        .imageMorden img{
+            width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .imageAncientWork img {
+            width: 640px;
+            height: auto;
+            margin-bottom: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .imageMordenWork img {
+            width: 640px;
+            height: auto;
+            margin-bottom: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-section .text {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .mordenworking{
+            margin-left: 20px;
+        
+        }
+        .comparison-section .image {
+        
+            width: 500px;
+        }
+
+        .comparison-section h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .comparison-section p {
+            font-size: 18px; /* Increased font size for better readability */
+            line-height: 1.8; /* Increased line height for better spacing */
+            margin: 15px 0; /* Adjusted margin for better spacing */
+            color: #555;
         }
 
         .comment-section {
@@ -90,20 +120,22 @@
         .comment-section h3 {
             font-size: 18px;
             margin-bottom: 10px;
+            color: #333;
         }
 
         .comment-section p {
             font-size: 16px;
             line-height: 1.5;
+            color: #555;
         }
-        h1{
-          display: flex;
-          justify-content:center;
-          align-items: center;
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007BFF;
         }
     </style>
 </head>
-
 <body>
     <div class="comparison-card">
         <h1 class="title">
@@ -111,66 +143,62 @@
         </h1>
 
         <div class="comparison-section">
-            <div class="text">
-                <h3>
-                    <%= Comparison.mordenField %>
-                </h3>
-            </div>
-            <div class="image">
+            <div class="imageMorden">
                 <img src="<%= Comparison.mordenImage %>" alt="Modern Field Image">
+            </div>
+            <div class="text">
+               <h2>Modern Field</h2> 
+                <p><%= Comparison.mordenField %></p>
+                <p><%= Comparison.mordenDescription %></p>
             </div>
         </div>
 
         <div class="comparison-section">
             <div class="text">
-                <h3>Ancient Field: <%= Comparison.ancientField %>
-                </h3>
+                <h2>Ancient Field</h2>
+                <p> <%= Comparison.ancientField %></p>
+                <p><%= Comparison.ancientDescription %></p>
             </div>
             <div class="image">
                 <img src="<%= Comparison.ancientImage %>" alt="Ancient Field Image">
             </div>
         </div>
-
+        
         <div class="comparison-section">
-            <div class="text">
-                <h3>Modern Working Model</h3>
-                <p>
-                    <%= Comparison.mordenWorkingModel %>
-                </p>
-            </div>
-            <div class="image">
+            <div class="imageMordenWork">
                 <img src="<%= Comparison.mordenWorkingImage %>" alt="Modern Working Model Image">
             </div>
-        </div>
-
-        <div class="comparison-section">
-            <div class="text">
-                <h3>Ancient Working Model</h3>
-                <p>
-                    <%= Comparison.ancientWorkingModel %>
-                </p>
+            <div class="mordenworking">
+                <h3>Modern Working Model</h3>
+                <p><%= Comparison.mordenWorkingModel %></p>
             </div>
-
-            <div class="image">
+        </div>
+        
+        <div class="comparison-section">
+            <div class="imageAncientWork">
                 <img src="<%= Comparison.ancientWorkingImage %>" alt="Ancient Working Model Image">
             </div>
+            <div class="text">
+                <h3>Ancient Working Model</h3>
+                <p><%= Comparison.ancientWorkingModel %></p>
+            </div>
         </div>
-
+        <div class="imageComparison">
+            <h2>MordenField VS AncientField</h2>
+            <img src="<%= Comparison.camparisonImage %>" alt="Ancient Working Model Image">
+        </div>
+        
         <div class="comparison-section">
             <div class="text">
                 <h3>Comparison</h3>
-                <p>
-                    <%= Comparison.compareText %>
-                </p>
+                <p><%= Comparison.compareText %></p>
             </div>
         </div>
-
+        
         <div class="comparison-section">
             <div class="text">
                 <h3>Summary</h3>
-                <p>
-                    <%= Comparison.summary %>
-                </p>
+                <p><%= Comparison.summary %></p>
             </div>
         </div>
     </div>
@@ -182,14 +210,9 @@
         </form>
 
         <h3>Comments</h3>
-        <% comments.forEach(comment=> { %>
-            <p><strong>
-                    <%= comment.owner.fullname %>:
-                </strong>
-                <%= comment.commentText %>
-            </p>
-            <% }); %>
+        <% comments.forEach(comment => { %>
+            <p><strong><%= comment.owner.fullname %>:</strong> <%= comment.commentText %></p>
+        <% }); %>
     </div>
 </body>
-
-</html>
+</html> 
