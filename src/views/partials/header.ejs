@@ -251,6 +251,44 @@
 
     }
 
+    @media (max-width: 768px) {
+    .navbar-list {
+    flex-direction: row;
+    /* font-size: 0.5rem; */
+    /* gap: px; */
+    padding-left: 0;
+  }
+
+  .searchcontainer {
+    /* margin-top: 10px; */
+  }
+  
+  .header {
+    /* flex-direction: column; */
+    align-items: center;
+  }
+
+  li {
+      list-style: none;
+      padding: 8px;
+    }
+
+    li a {
+      font-size: 15px;
+      text-decoration: none;
+      color: var(--bg-wild-blue-yonder);
+    }
+
+
+  .Login  {
+    /* margin-inline-end: auto; */
+    /* margin-left: 80px; */
+    font-size: 15px;
+
+    text-align: center;
+  }
+  
+}
     /* .serchicon :hover{
             background: sh;
           } */
@@ -851,8 +889,8 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <img src="https://res.cloudinary.com/warrior90/image/upload/v1720525424/reaserch_2_zkgr0h.png" width="30px" height="0px" srcset="">
-      </div>
+        <img src="/public/images/image1.png" width="30px"  alt="logo">
+      </diutv>
 
       <ul class="navbar-list">
         <li>
@@ -861,15 +899,15 @@
         <li>
           <a href="#biography" class="navbar-link hover-1">Biography</a>
         </li>
-        <li>
+        <!-- <li>
           <a href="#Research" class="navbar-link hover-1">Research</a>
-        </li>
+        </li> -->
         <li>
           <a href="#AncientBook" class="navbar-link hover-1">Ancient Book</a>
         </li>
-        <li>
+        <!-- <li>
           <a href="#aboutUs" class="navbar-link hover-1">About Us</a>
-        </li>
+        </li> -->
       </ul>
 
 
@@ -888,7 +926,7 @@
     </div>
 
     <div class="Login">
-      <a href="/api/users/register/<%= user._id %>" class="login-link">sign in</a>
+      <a href="/api/users/register/<%= user._id %>" class="login-link"><h4>sign in</h4></a>
     </div>
 
   </header> 
@@ -896,51 +934,6 @@
   </style>
 </head>
 
-<body>
+</html>
 
-  <header class="header">
-    <div class="container">
-      <div class="logo">
-        <img src="https://res.cloudinary.com/warrior90/image/upload/v1720525424/reaserch_2_zkgr0h.png" width="30px"
-          height="0px" srcset="">
-      </div>
-
-      <ul class="navbar-list">
-        <li>
-          <a href="#home" class="navbar-link hover-1">Home</a>
-        </li>
-        <li>
-          <a href="#biography" class="navbar-link hover-1">Biography</a>
-        </li>
-        <li>
-          <a href="#Research" class="navbar-link hover-1">Research</a>
-        </li>
-        <li>
-          <a href="#AncientBook" class="navbar-link hover-1">Ancient Book</a>
-        </li>
-        <li>
-          <a href="#aboutUs" class="navbar-link hover-1">About Us</a>
-        </li>
-      </ul>
-
-
-    </div>
-
-
-    <!--------    Serch -----  -->
-
-    <div class="searchcontainer">
-      <div class="search">
-        <input type="text" id="searchInput" placeholder="Search">
-        <img src="https://res.cloudinary.com/warrior90/image/upload/v1720525424/reaserch_2_zkgr0h.png" width="0px"
-          class="serchicon">
-
-      </div>
-      <div id="result"></div>
-    </div>
-
-    <div class="Login">
-      <a href="/api/users/register/<%= user._id %>" class="login-link">sign in</a>
-    </div>
-
-  </header> fix this
+  

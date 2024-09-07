@@ -1,74 +1,74 @@
 <footer>
-  <!-- JavaScript for Section 1 Card Slider -->
-  <script>
-      // Section 1 card slider functionality
-      let scrollbar = document.querySelector('.compare-wrapper');
-      let leftButton = document.getElementById("left-btn");
-      let rightButton = document.getElementById("right-btn");
+    <!-- JavaScript for Section 1 Card Slider -->
+    <script>
+        // Section 1 card slider functionality
+        let scrollbar = document.querySelector('.compare-wrapper');
+        let leftButton = document.getElementById("left-btn");
+        let rightButton = document.getElementById("right-btn");
 
-      // Wheel event to scroll horizontally
-      scrollbar.addEventListener("wheel", (evt) => {
-          evt.preventDefault();
-          scrollbar.scrollLeft += evt.deltaY;  // Use deltaY for vertical scroll
-          console.log("Wheel event triggered");
-      });
+        // Wheel event to scroll horizontally
+        scrollbar.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollbar.scrollLeft += evt.deltaY;  // Use deltaY for vertical scroll
+            console.log("Wheel event triggered");
+        });
 
-      // Left button click event
-      leftButton.addEventListener('click', () => {
-          scrollbar.style.scrollBehavior = "smooth";
-          scrollbar.scrollLeft -= 700;
-      });
+        // Left button click event
+        leftButton.addEventListener('click', () => {
+            scrollbar.style.scrollBehavior = "smooth";
+            scrollbar.scrollLeft -= 700;
+        });
 
-      // Right button click event
-      rightButton.addEventListener('click', () => {
-          scrollbar.style.scrollBehavior = "smooth";
-          scrollbar.scrollLeft += 700;
-      });
+        // Right button click event
+        rightButton.addEventListener('click', () => {
+            scrollbar.style.scrollBehavior = "smooth";
+            scrollbar.scrollLeft += 700;
+        });
 
-      // Another swiper container
-      let scrollContainer = document.querySelector(".h-swiper-wrapper");
-      let leftbtn = document.getElementById("left-btn2");
-      let rightbtn = document.getElementById("right-btn2");
+        // Another swiper container
+        let scrollContainer = document.querySelector(".h-swiper-wrapper");
+        let leftbtn = document.getElementById("left-btn2");
+        let rightbtn = document.getElementById("right-btn2");
 
-      // Scroll container wheel event
-      scrollContainer.addEventListener("wheel", (evt) => {
-          evt.preventDefault();
-          scrollContainer.scrollLeft += evt.deltaY;
-      });
+        // Scroll container wheel event
+        scrollContainer.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollContainer.scrollLeft += evt.deltaY;
+        });
 
-      // Right button for second container
-      rightbtn.addEventListener("click", () => {
-          scrollContainer.style.scrollBehavior = "smooth";
-          scrollContainer.scrollLeft += 700;
-      });
+        // Right button for second container
+        rightbtn.addEventListener("click", () => {
+            scrollContainer.style.scrollBehavior = "smooth";
+            scrollContainer.scrollLeft += 700;
+        });
 
-      // Left button for second container
-      leftbtn.addEventListener("click", () => {
-          scrollContainer.style.scrollBehavior = "smooth";
-          scrollContainer.scrollLeft -= 700;
-      });
-  </script>
+        // Left button for second container
+        leftbtn.addEventListener("click", () => {
+            scrollContainer.style.scrollBehavior = "smooth";
+            scrollContainer.scrollLeft -= 700;
+        });
+    </script>
 
-  <!-- Swiper JS Script -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-  <script>
-      var swiper = new Swiper(".mySwiper", {
-          loop: true,
-          autoplay: {
-              delay: 3000, // Adjust the delay between slides in milliseconds
-              disableOnInteraction: false, // Enable autoplay even if the user interacts with the swiper
-          },
-          effect: "slide", // Change the effect to a simple slide
-          slidesPerView: "auto",
-          spaceBetween: 15, // Adjust space between slides
-          centeredSlides: true, // Center the active slide
-          pagination: {
-              el: ".swiper-pagination",
-          },
-      });
+    <!-- Swiper JS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+                delay: 3000, // Adjust the delay between slides in milliseconds
+                disableOnInteraction: false, // Enable autoplay even if the user interacts with the swiper
+            },
+            effect: "slide", // Change the effect to a simple slide
+            slidesPerView: "auto",
+            spaceBetween: 15, // Adjust space between slides
+            centeredSlides: true, // Center the active slide
+            pagination: {
+                el: ".swiper-pagination",
+            },
+        });
 
-      // Search container JavaScript
-      const sliderContainer = document.getElementById('swiper-wrapper');
-      const rightBtn = document.getElementById('righttern-btn');
-  </script>
+        // Search container JavaScript
+        const sliderContainer = document.getElementById('swiper-wrapper');
+        const rightBtn = document.getElementById('righttern-btn');
+    </script>
 </footer>
