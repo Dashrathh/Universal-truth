@@ -10,7 +10,7 @@
   <!-- <script src="/js/cardslider.js" defer></script>  -->
 
   <style>
-     :root {
+    :root {
       /** Background colors */
       --bg-wild-blue-yonder: hsla(216, 33%, 68%, 1);
       --bg-carolina-blue: hsla(199, 89%, 49%, 1);
@@ -74,7 +74,8 @@
       font-family: var(--fontFamily-noto_sans);
       background: cover;
       line-height: var(--lineHeight-4);
-      overflow-x: hidden; /* Prevent horizontal scrollbar */
+      overflow-x: hidden;
+      /* Prevent horizontal scrollbar */
 
       /* box-sizing: border-box; */
 
@@ -252,47 +253,243 @@
     }
 
     @media (max-width: 768px) {
-    .navbar-list {
-    flex-direction: row;
-    /* font-size: 0.5rem; */
-    /* gap: px; */
-    padding-left: 0;
-  }
+      .navbar-list {
+        flex-direction: row;
+        /* font-size: 0.5rem; */
+        /* gap: px; */
+        padding-left: 0;
+      }
 
-  .searchcontainer {
-    /* margin-top: 10px; */
-  }
-  
-  .header {
-    /* flex-direction: column; */
-    align-items: center;
-  }
+      .searchcontainer {
+        /* margin-top: 10px; */
+      }
 
-  li {
-      list-style: none;
-      padding: 8px;
+      .header {
+        /* flex-direction: column; */
+        align-items: center;
+      }
+
+      li {
+        list-style: none;
+        margin-left: 25px;
+      }
+
+      li a {
+        font-size: 15px;
+        text-decoration: none;
+        color: var(--bg-wild-blue-yonder);
+      }
+
+      .navbar-list {
+        /* display: flex; */
+        justify-content: space-between;
+        padding-left: 3px;
+        margin-left: 3px;
+      }
+
+
+      .Login {
+        /* margin-inline-end: auto; */
+        margin-left: 8px;
+        font-size: 15px;
+        /* text-align: center; */
+      }
+
     }
 
-    li a {
-      font-size: 15px;
-      text-decoration: none;
-      color: var(--bg-wild-blue-yonder);
+    /*  First page info container */
+
+    @media (max-width:768px) {
+
+      .info-container {
+
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+      }
+
+      h1 {
+        font-size: 25px;
+        background-image: var(--gradient-1);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        /* margin: -10px; */
+
+      }
+
+      .span {
+        padding: 10px;
+        line-height: 7px;
+        margin-top: 90px;
+
+
+      }
     }
 
 
-  .Login  {
-    /* margin-inline-end: auto; */
-    /* margin-left: 80px; */
-    font-size: 15px;
+    /* Section one comparison */
+    .introcard {
+      background-color: var(--border-prussian-blue);
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      width: 270px;
+      height: 301px;
+      margin: 10px 20px;
+      display: flex;
+      justify-content: center;
+      transform: translateY(129%);
+      transition: all 0.3s ease-in-out;
+    }
 
-    text-align: center;
-  }
-  
-}
-    /* .serchicon :hover{
-            background: sh;
-          } */
+    @media (max-width: 1024px) {}
 
+
+
+    /* Compariosn section */
+
+    @media (max-width: 768px) {
+      .introcard {
+        background-color: var(--border-prussian-blue);
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        width: 300px;
+        height: 300px;
+        margin: 10px 20px;
+        margin-left: 40px;
+        display: flex;
+        justify-content: center;
+        transform: translateY(129%);
+        transition: all 0.3s ease-in-out;
+      }
+
+    }
+
+    /* =============== section 1 camparison card */
+    @media only screen and (min-width: 1024px) and (max-width: 1440px) {
+      .compare-wrapper {
+        height: 400px;
+        margin-right: 50px;
+        display: flex;
+        align-items: center;
+        transition: transform 0.5s ease;
+        margin-left: 320px;
+        overflow-x: scroll;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+
+      }
+
+      .h-swiper {
+      width: 75%;
+      height: 100%;
+      overflow: hidden;
+      margin-left: 300px;
+
+    }
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+
+      .com {
+        width: 100%;
+        margin: 10px 0;
+        height: auto;
+      }
+
+      .com-image {
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      .com_content {
+        padding: 0 10px;
+      }
+
+      .campare {
+        width: 100%;
+        margin-left: 0;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+      .com {
+        width: 100%;
+        margin: 10px 0;
+        height: auto;
+      }
+
+      .com-image {
+        height: auto;
+        margin-bottom: 15px;
+      }
+
+      .com_title {
+        font-size: 0.9rem;
+      }
+
+      .com_text {
+        font-size: 0.9rem;
+      }
+    }
+
+
+    /* For mobile devices */
+    @media only screen and (max-width: 600px) {
+      .compare-wrapper {
+        margin-top: 310px;
+        /* Added margin-top to push content down */
+        height: auto;
+        /* Auto height so that it adapts to content */
+        overflow-x: auto;
+        /* Enable horizontal scroll if needed */
+        justify-content: center;
+      }
+
+      .com {
+        width: 100%;
+        /* Make the cards take full width */
+        height: auto;
+        /* Let the height be determined by content */
+        margin: 10px 0;
+        /* Adjust margins for spacing between cards and added margin-top */
+      }
+
+      .com-image {
+        width: 100%;
+        /* Image should also take full width */
+        height: auto;
+        /* Maintain aspect ratio */
+      }
+
+      .com-content {
+        text-align: center;
+      }
+
+      .campare {
+        width: 100%;
+        /* margin-left: 0;
+    margin-top: 30px; /* Increase margin-top for the compare section */
+        overflow-x: auto;
+      }
+
+      .campare-swiper {
+        display: flex;
+        width: auto;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scrolling for mobile */
+      }
+
+      /* Hide scrollbars for mobile */
+      .campare-swiper::-webkit-scrollbar {
+        display: none;
+      }
+    }
 
 
     img {
@@ -300,151 +497,125 @@
     }
 
 
-    .btn-primary {
 
-      padding: 8px 16px;
-      /* border-radius: var(--radius-6); */
-      background-image: var(--gradient-2);
-      background-size: 200%;
-      background-position: left;
-      /* color: var(--white); */
-      font-size: var(--fontSize-6);
-      max-width: max-content;
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      /* transition: var(--transition-1); */
-      margin: 50px;
-      display: flex;
-      justify-content: center;
-      /* margin: -150px auto 200px;  */
-      margin-left: 100px;
-      cursor: pointer;
-      color: var(--text-white);
-      border-radius: 10px;
+
+    /* =========================================================== */
+
+
+    /* Section 2  */
+    @media (max-width: 768px) {
+      .h-swiper {
+        width: 75%;
+        height: 100%;
+        overflow: hidden;
+        /* margin-left: 300px; */
+        /* margin-right: 800px; */
+        margin-top: 400px;
+
+      }
 
     }
+    @media (min-width: 1200px) {
+  .card {
+    width: 15em;
+    height: 21rem;
+  }
+  .card_title {
+    font-size: 1.75rem;
+  }
+  .card_text {
+    font-size: 1.1rem;
+  }
+  .button-s, .button-m, .button-B {
+    padding-left: 450px;
+  }
+}
 
-    .btn:is(:hover, :focus-visible) {
-      background-position: right;
-    }
+/* Medium screens (Laptops between 992px and 1200px) */
+@media (max-width: 1200px) and (min-width: 992px) {
+  .h-swiper-wrapper {
+    width: 85%;
+    margin-left: 100px;
+  }
+  .card {
+    width: 14em;
+    height: 20rem;
+  }
+  .button-s, .button-m, .button-B {
+    padding-left: 300px;
+  }
+  .monk {
+    margin-left: 150px;
+  }
+}
+
+/* Tablets (Between 768px and 991px) */
+@media (max-width: 991px) {
+  .h-swiper-wrapper {
+    width: 90%;
+    margin-left: 50px;
+  }
+  .card {
+    width: 100%;
+    margin: 10px;
+  }
+  .card_image {
+    width: 100%;
+  }
+  .button-s, .button-m, .button-B {
+    padding-left: 0;
+    margin-right: 0;
+    gap: 10px;
+  }
+}
+
+/* Mobile phones (Below 768px) */
+@media (max-width: 767px) {
+  .h-swiper-wrapper {
+    width: 100%;
+    margin-left: 100px
+  }
+  .card {
+    width: 100%;
+    margin: 5px;
+    height: auto;
+  }
+  .card_image {
+    width: 100%;
+    height: auto;
+  }
+  .card_title {
+    font-size: 1.2rem;
+  }
+  .card_text {
+    font-size: 0.9rem;
+  }
+  .monk {
+    margin-left: 0;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .button-s, .button-m, .button-B {
+    display: block;
+    padding-left: 0;
+    gap: 10px;
+    margin: 10px auto;
+    text-align: center;
+  }
+}
+
+
+
+
+
 
     /************  card section-2  ********************/
 
 
-    .h-swiper {
-      width: 75%;
-      height: 100%;
-      overflow: hidden;
-      margin-left: 300px;
-
-    }
 
 
-    .h-swiper-wrapper {
-      width: auto;
-      display: flex;
-      align-items: center;
-      /* overflow-x: scroll; */
-      cursor: pointer;
-    }
-
-    .h-swiper-wrapper::-webkit-scrollbar {
-      display: none;
-    }
-
-    .card {
-      width: 13em;
-      height: 19rem;
-      background-color: var(--bg-oxford-blue);
-      border-radius: 1em;
-      /* box-shadow: 0 0 2em #d9d7e633; */
-      display: flex;
-      /* align-items: center; */
-      /* justify-content: flex-end; */
-      /* flex-direction: column; */
-      margin: 10px 20px;
-      /* margin-left: -10px; */
-      flex: none;
-
-    }
-
-    .card:hover {
-      transition: transform 0.5s;
-      transform: translateY(-10px);
-
-    }
-
-    .card_image {
-      width: 13rem;
-      height: 15rem;
-      object-fit: cover;
-    }
 
 
-    .card_image img {
-      width: 100%;
-      height: 100%;
-      border-radius: 1rem;
-      object-fit: cover;
-    }
-
-    .card_content {
-      text-align: center;
-      list-style: none;
-      text-decoration: none;
-
-
-    }
-
-    .card_title {
-      font-size: 1.5rem;
-      font-weight: 500;
-      text-decoration: none;
-
-    }
-
-    .card_text {
-      text-align: center;
-      font-size: 1rem;
-
-
-    }
-
-    .monk {
-      justify-content: center;
-      margin-left: 300px;
-      margin: 10px;
-
-    }
-
-
-    .button-s {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-left: 400px;
-      gap: 20px;
-      margin: 20px;
-      margin-right: 300px;
-    }
-
-
-    .btn-icon {
-
-      cursor: pointer;
-      /* color: azure; */
-      width: 30px;
-      height: 30px;
-      place-items: center;
-      justify-content: center;
-      display: flex;
-      background: var(--bg-prussian-blue);
-      border-radius: var(--radius-circle);
-      color: white;
-      /* margin-right: 30px; */
-
-    }
 
     .btn-icon:hover {
       background-color: var(--bg-carolina-blue);
@@ -454,7 +625,7 @@
       width: 75%;
       height: 100%;
       overflow: hidden;
-      margin-left: 300px;
+      /* margin-left: 300px; */
 
     }
 
@@ -531,7 +702,7 @@
 
     .monk {
       justify-content: center;
-      margin-left: 300px;
+      /* margin-left: 300px; */
       margin: 10px;
 
     }
@@ -598,7 +769,7 @@
       background-color: var(--bg-carolina-blue);
     }
 
-
+    /*   */
 
     /* =============== Anciet book card section ============== */
 
@@ -607,14 +778,15 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      
-    }
-    .swiper-wrapper::-webkit-scrollbar {
-      display: none;
-     overflow-x: scroll;
 
     }
-    
+
+    .swiper-wrapper::-webkit-scrollbar {
+      display: none;
+      overflow-x: scroll;
+
+    }
+
     .swiper {
 
       justify-content: flex-end;
@@ -625,7 +797,7 @@
       width: 1200px;
       height: 400px;
       /* margin: 10px; */
-      margin-left: 80px; 
+      margin-left: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -671,7 +843,7 @@
     }
 
     /* Card content */
-  
+
 
     /* .cord__content {
       font-size: 1.5rem;
@@ -720,21 +892,6 @@
 
     /*   introduction card */
 
-    .introcard {
-      background-color: var(--border-prussian-blue);
-      color: white;
-      padding: 10px;
-      border-radius: 10px;
-      width: 270px;
-      height: 301px;
-      margin: 10px 20px;
-      display: flex;
-      justify-content: center;
-      /* bottom: 0px; */
-      transform: translateY(129%);
-
-
-    }
 
     /*  second introductio */
 
@@ -756,19 +913,17 @@
 
 
 
-        /* =============== section 1 camparison card */
-
 
     .compare-wrapper {
       height: 400px;
-      margin-right: 50px;
+      /* margin-right: 50px; */
       display: flex;
       align-items: center;
       transition: transform 0.5s ease;
-      margin-left: 300px;
-     overflow-x: scroll;
-     scrollbar-width: none;    
-     
+      /* margin-left: 300px; */
+      overflow-x: scroll;
+      scrollbar-width: none;
+
     }
 
     .com {
@@ -795,9 +950,10 @@
     }
 
     .com-image {
-      width: 15rem;
       height: 16rem;
       object-fit: cover;
+      margin-bottom: 26px;
+
     }
 
 
@@ -805,6 +961,7 @@
       width: 100%;
       height: 100%;
       border-radius: 1rem;
+      /* margin-bottom: 100px; */
       object-fit: cover;
     }
 
@@ -835,7 +992,7 @@
       height: 100%;
       overflow: hidden;
       overflow-x: scroll;
-  
+
       margin-left: 330px;
 
     }
@@ -851,17 +1008,49 @@
     }
 
     .campare-wraper::-webkit-scrollbar {
-      display: none;
+      /* display: none; */
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
     }
-      /* scroll-behavior: smooth; */
 
-      /* -webkit-overflow-scrolling: touch; */
 
 
 
     .fa {
       background-color: red;
     }
+
+    btn-primary {
+
+      padding: 8px 16px;
+      /* border-radius: var(--radius-6); */
+      background-image: var(--gradient-2);
+      background-size: 200%;
+      background-position: left;
+      /* color: var(--white); */
+      font-size: var(--fontSize-6);
+      max-width: max-content;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      /* transition: var(--transition-1); */
+      margin: 50px;
+      display: flex;
+      justify-content: center;
+      /* margin: -150px auto 200px;  */
+      margin-left: 100px;
+      cursor: pointer;
+      color: var(--text-white);
+      border-radius: 10px;
+
+    }
+
+    .btn:is(:hover, :focus-visible) {
+      background-position: right;
+    }
+
+
 
 
 
@@ -889,51 +1078,51 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <img src="/public/images/image1.png" width="30px"  alt="logo">
-      </diutv>
+        <img src="/public/images/image1.png" width="30px" alt="logo">
+        </diutv>
 
-      <ul class="navbar-list">
-        <li>
-          <a href="#home" class="navbar-link hover-1">Home</a>
-        </li>
-        <li>
-          <a href="#biography" class="navbar-link hover-1">Biography</a>
-        </li>
-        <!-- <li>
+        <ul class="navbar-list">
+          <li>
+            <a href="#home" class="navbar-link hover-1">Home</a>
+          </li>
+          <li>
+            <a href="#biography" class="navbar-link hover-1">Biography</a>
+          </li>
+          <!-- <li>
           <a href="#Research" class="navbar-link hover-1">Research</a>
         </li> -->
-        <li>
-          <a href="#AncientBook" class="navbar-link hover-1">Ancient Book</a>
-        </li>
-        <!-- <li>
+          <li>
+            <a href="#AncientBook" class="navbar-link hover-1"> Book</a>
+          </li>
+          <!-- <li>
           <a href="#aboutUs" class="navbar-link hover-1">About Us</a>
         </li> -->
-      </ul>
+        </ul>
 
 
-    </div>
+      </div>
 
 
-    <!--------    Serch -----  -->
+      <!--------    Serch -----  -->
 
-    <div class="searchcontainer">
+      <!-- <div class="searchcontainer">
       <div class="search">
         <input type="text" id="searchInput" placeholder="Search">
         <img src="https://res.cloudinary.com/warrior90/image/upload/v1720525424/reaserch_2_zkgr0h.png" width="0px" class="serchicon">
 
       </div>
       <div id="result"></div>
-    </div>
+    </div> -->
 
-    <div class="Login">
-      <a href="/api/users/register/<%= user._id %>" class="login-link"><h4>sign in</h4></a>
-    </div>
+      <div class="Login">
+        <a href="/api/users/register/<%= user._id %>" class="login-link">
+          <h4>sign in</h4>
+        </a>
+      </div>
 
-  </header> 
-   
+  </header>
+
   </style>
-</head>
+  </head>
 
 </html>
-
-  
