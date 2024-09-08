@@ -11,21 +11,28 @@
             background-color: #fff;
             margin: 0;
             padding: 20px;
+            box-sizing: border-box;
         }
 
         .comparison-card {
             border-radius: 8px;
             padding: 20px;
-            /* margin-bottom: 20px; */
-            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+            max-width: 1200px;
+            margin: auto;
         }
 
         .comparison-section {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .imageMorden, .imageAncient {
+            width: 48%; /* Adjusted for better responsiveness */
+            max-width: 400px;
+            flex: 1;
+            margin-bottom: 20px;
         }
 
         .comparison-section img {
@@ -34,66 +41,38 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
-        .imageComparison{
-            justify-content: center;
-             /* padding-left: 300px; */
-             /* width: 000px; */
-             width: 400px;
-        }
-        .imageMorden img{
-            width: 300px;
+
+        .imageMorden img, .imageAncientWork img, .imageMordenWork img {
+            max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .imageAncientWork img {
-            width: 640px;
-            height: auto;
-            margin-bottom: 500px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .imageMordenWork img {
-            width: 640px;
-            height: auto;
-            margin-bottom: 500px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .comparison-section .text {
+        .text {
             flex: 1;
             margin-left: 20px;
-        }
-        .mordenworking{
-            margin-left: 20px;
-        
-        }
-        .comparison-section .image {
-        
-            width: 500px;
+            width: 100%;
         }
 
-        .comparison-section h3 {
+        .comparison-section h2, .comparison-section h3 {
             font-size: 24px;
             margin-bottom: 10px;
             color: #333;
         }
 
         .comparison-section p {
-            font-size: 18px; /* Increased font size for better readability */
-            line-height: 1.8; /* Increased line height for better spacing */
-            margin: 15px 0; /* Adjusted margin for better spacing */
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 15px 0;
             color: #555;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
         }
 
         .comment-section {
             margin-top: 20px;
-        }
-
-        .comment-section form {
-            margin-bottom: 20px;
         }
 
         .comment-section textarea {
@@ -117,22 +96,47 @@
             background-color: #0056b3;
         }
 
-        .comment-section h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #333;
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .comparison-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .imageMorden, .imageAncient {
+                width: 100%;
+                max-width: 100%; /* Ensures full width on smaller screens */
+            }
+
+            .text {
+                margin-left: 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .comparison-section img {
+                width: 100%;
+                margin-bottom: 10px;
+            }
         }
 
-        .comment-section p {
-            font-size: 16px;
-            line-height: 1.5;
-            color: #555;
-        }
+        /* For even smaller screens */
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #007BFF;
+            .comparison-card {
+                padding: 10px;
+            }
+
+            .comparison-section h2, .comparison-section h3 {
+                font-size: 20px;
+            }
+
+            .comparison-section p {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -142,6 +146,7 @@
             <%= Comparison.mordenVSancient %>
         </h1>
 
+        <!-- Modern Field Section -->
         <div class="comparison-section">
             <div class="imageMorden">
                 <img src="<%= Comparison.mordenImage %>" alt="Modern Field Image">
@@ -149,52 +154,60 @@
             <div class="text">
                <h2>Modern Field</h2> 
                 <p><%= Comparison.mordenField %></p>
-                <p><%= Comparison.mordenDescription %></p>
             </div>
         </div>
 
+        <!-- Ancient Field Section -->
         <div class="comparison-section">
             <div class="text">
                 <h2>Ancient Field</h2>
-                <p> <%= Comparison.ancientField %></p>
+                <p><%= Comparison.ancientField %></p>
                 <p><%= Comparison.ancientDescription %></p>
             </div>
-            <div class="image">
+            <div class="imageAncient">
                 <img src="<%= Comparison.ancientImage %>" alt="Ancient Field Image">
             </div>
         </div>
-        
+
+        <!-- Modern Working Model Section -->
         <div class="comparison-section">
             <div class="imageMordenWork">
+                <h3>Modern Working Model</h3>
                 <img src="<%= Comparison.mordenWorkingImage %>" alt="Modern Working Model Image">
             </div>
-            <div class="mordenworking">
-                <h3>Modern Working Model</h3>
+            <div class="text">
                 <p><%= Comparison.mordenWorkingModel %></p>
             </div>
         </div>
-        
+
+        <!-- Ancient Working Model Section -->
         <div class="comparison-section">
             <div class="imageAncientWork">
+                <h3>Ancient Working Model</h3>
                 <img src="<%= Comparison.ancientWorkingImage %>" alt="Ancient Working Model Image">
             </div>
             <div class="text">
-                <h3>Ancient Working Model</h3>
                 <p><%= Comparison.ancientWorkingModel %></p>
             </div>
         </div>
-        <div class="imageComparison">
-            <h2>MordenField VS AncientField</h2>
-            <img src="<%= Comparison.camparisonImage %>" alt="Ancient Working Model Image">
+
+        <!-- Image Comparison Section -->
+        <div class="comparison-section">
+            <h2>Modern Field VS Ancient Field</h2>
+            <div class="comare">
+                <img src="<%= Comparison.camparisonImage %>" alt="Comparison Image">
+            </div>
         </div>
-        
+
+        <!-- Comparison Text -->
         <div class="comparison-section">
             <div class="text">
                 <h3>Comparison</h3>
                 <p><%= Comparison.compareText %></p>
             </div>
         </div>
-        
+
+        <!-- Summary Section -->
         <div class="comparison-section">
             <div class="text">
                 <h3>Summary</h3>
@@ -203,6 +216,7 @@
         </div>
     </div>
 
+    <!-- Comment Section -->
     <div class="comment-section">
         <form action="/api/comparisons/<%= Comparison._id %>/comment" method="POST">
             <textarea id="commentText" name="commentText" rows="4" cols="50"></textarea>
@@ -215,4 +229,4 @@
         <% }); %>
     </div>
 </body>
-</html> 
+</html>

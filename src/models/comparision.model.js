@@ -48,12 +48,16 @@ const CamparisonSchema = new Schema(
       type: String,
       required: true,
     },
-
-    ancientWorkingImage: {
-      type: String,
-      required: true,
+    
+    camparisonImage:{
+      type:String,
+      required:true
     },
-
+    
+    ancientWorkingImage:{
+      type:String,
+      required:true
+    },
     compareText: {
       type: String,
       required: true,

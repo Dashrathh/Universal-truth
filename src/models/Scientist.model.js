@@ -2,18 +2,18 @@ import mongoose, { Schema } from "mongoose";
 
 const ScientistSchema = new Schema(
   {
-    title:{
-      type:String,
-      required:true
+    title: {
+      type: String,
+      required: true
     },
-    
-    cardname:{
-      type:String,
-      required:true
+
+    cardname: {
+      type: String,
+      required: true
     },
-    contribution:{
-      type:String,
-      required:true
+    contribution: {
+      type: String,
+      required: true
     },
 
     name: {
@@ -32,9 +32,9 @@ const ScientistSchema = new Schema(
       type: String,
       required: true,
     },
-    ScientistImage:{
-      type:String,
-      require:true
+    ScientistImage: {
+      type: String,
+      require: true
     },
     their_work: {
       type: String,
@@ -54,19 +54,11 @@ const ScientistSchema = new Schema(
       required: true,
     },
 
-    evidence: [
-      {
-        evidenceImage: {
-          type: String, // Typw of evidence, e.g., "photo"
-          required: true,
-        },
+    evidenceImage: {
+      type: String, // Typw of evidence, e.g., "photo"
+      required: true,
+    },
 
-        description: {
-          type: String,
-          required: false,
-  },
-      },
-    ],
   },
   {
     timestamps: true,

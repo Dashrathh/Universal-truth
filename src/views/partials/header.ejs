@@ -343,6 +343,22 @@
       transition: all 0.3s ease-in-out;
     }
 
+    /*  introduction for scientist */
+    .introduction-2 {
+
+      background-color: var(--border-prussian-blue);
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      width: 270px;
+      height: 300px;
+      margin: 10px 20px;
+      display: flex;
+      justify-content: center;
+      transform: translateY(120%);
+
+    }
+
     @media (max-width: 1024px) {}
 
 
@@ -365,6 +381,23 @@
         transition: all 0.3s ease-in-out;
       }
 
+      .introduction-2 {
+
+        background-color: var(--border-prussian-blue);
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        width: 300px;
+        height: 300px;
+        margin: 10px 20px;
+        margin-left: 80px;
+
+        display: flex;
+        justify-content: center;
+        transform: translateY(120%);
+
+      }
+
     }
 
     /* =============== section 1 camparison card */
@@ -383,12 +416,12 @@
       }
 
       .h-swiper {
-      width: 75%;
-      height: 100%;
-      overflow: hidden;
-      margin-left: 300px;
+        width: 75%;
+        height: 100%;
+        overflow: hidden;
+        margin-left: 300px;
 
-    }
+      }
     }
 
     /* Responsive styles */
@@ -502,115 +535,88 @@
     /* =========================================================== */
 
 
-    /* Section 2  */
-    @media (max-width: 768px) {
-      .h-swiper {
-        width: 75%;
-        height: 100%;
-        overflow: hidden;
-        /* margin-left: 300px; */
-        /* margin-right: 800px; */
-        margin-top: 400px;
-
-      }
-
-    }
-    @media (min-width: 1200px) {
-  .card {
-    width: 15em;
-    height: 21rem;
-  }
-  .card_title {
-    font-size: 1.75rem;
-  }
-  .card_text {
-    font-size: 1.1rem;
-  }
-  .button-s, .button-m, .button-B {
-    padding-left: 450px;
-  }
-}
-
-/* Medium screens (Laptops between 992px and 1200px) */
-@media (max-width: 1200px) and (min-width: 992px) {
-  .h-swiper-wrapper {
-    width: 85%;
-    margin-left: 100px;
-  }
-  .card {
-    width: 14em;
-    height: 20rem;
-  }
-  .button-s, .button-m, .button-B {
-    padding-left: 300px;
-  }
-  .monk {
-    margin-left: 150px;
-  }
-}
-
-/* Tablets (Between 768px and 991px) */
-@media (max-width: 991px) {
-  .h-swiper-wrapper {
-    width: 90%;
-    margin-left: 50px;
-  }
-  .card {
-    width: 100%;
-    margin: 10px;
-  }
-  .card_image {
-    width: 100%;
-  }
-  .button-s, .button-m, .button-B {
-    padding-left: 0;
-    margin-right: 0;
-    gap: 10px;
-  }
-}
-
-/* Mobile phones (Below 768px) */
-@media (max-width: 767px) {
-  .h-swiper-wrapper {
-    width: 100%;
-    margin-left: 100px
-  }
-  .card {
-    width: 100%;
-    margin: 5px;
-    height: auto;
-  }
-  .card_image {
-    width: 100%;
-    height: auto;
-  }
-  .card_title {
-    font-size: 1.2rem;
-  }
-  .card_text {
-    font-size: 0.9rem;
-  }
-  .monk {
-    margin-left: 0;
-    justify-content: center;
-    margin: 0 auto;
-  }
-  .button-s, .button-m, .button-B {
-    display: block;
-    padding-left: 0;
-    gap: 10px;
-    margin: 10px auto;
-    text-align: center;
-  }
-}
-
-
-
-
 
 
     /************  card section-2  ********************/
+    /* Mobile view ke liye styling */
+    @media (max-width: 768px) {
 
+      .h-swiper {
+        width: 100%;
+        /* height: auto; */
+        /* overflow: hidden; */
+        margin-top: 400px;
+        /* padding: 0 15px; */
+      }
+
+      .h-swiper-wrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        overflow-x: scroll;
+        /* Scroll horizontal */
+        cursor: pointer;
+        scroll-snap-type: x mandatory;
+        /* Swipe snapping */
+        gap: 10px;
+        /* Cards ke beech gap */
+        padding: 0 10px;
+        /* Padding for mobile */
+      }
+
+      .h-swiper-wrapper::-webkit-scrollbar {
+        display: none;
+        /* Scrollbar ko hide rakha */
+      }
+
+      .card {
+        width: 100px;
+        /* Mobile par width ko reduce kiya */
+        /* max-width: 13em; */
+        /* Max width ko maintain rakha */
+        height: 19rem;
+        background-color: var(--bg-oxford-blue);
+        border-radius: 1em;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        margin: 10px 5px;
+        /* Mobile ke liye margin adjust kiya */
+        flex: none;
+        scroll-snap-align: start;
+        /* Snap to start on scroll */
+      }
+
+      .card_image {
+        width: 00px;
+        /* Card image ko responsive banaya */
+        height: auto;
+        /* Image height auto, jisse adjust ho jaye */
+      }
+
+      .card_image img {
+        width: 50%;
+        height: 50%;
+        border-radius: 1rem;
+        object-fit: cover;
+      }
+
+      .card_content {
+        text-align: center;
+      }
+
+      .card_title {
+        font-size: 1.2rem;
+        /* Font size mobile ke liye adjust kiya */
+        font-weight: 500;
+      }
+
+      .card_text {
+        text-align: center;
+        font-size: 0.9rem;
+        /* Text size mobile par adjust kiya */
+      }
+    }
 
 
 
@@ -622,8 +628,8 @@
     }
 
     .h-swiper {
-      width: 75%;
-      height: 100%;
+      /* width: 75%; */
+      /* height: 100%; */
       overflow: hidden;
       /* margin-left: 300px; */
 
@@ -631,9 +637,9 @@
 
 
     .h-swiper-wrapper {
-      width: auto;
+      /* width: auto; */
       display: flex;
-      align-items: center;
+      /* align-items: center; */
       overflow-x: scroll;
       cursor: pointer;
     }
@@ -652,7 +658,7 @@
       /* align-items: center; */
       justify-content: flex-end;
       flex-direction: column;
-      margin: 10px 20px;
+      margin: 10px 10px;
       /* margin-left: -10px; */
       flex: none;
 
@@ -702,7 +708,7 @@
 
     .monk {
       justify-content: center;
-      /* margin-left: 300px; */
+      margin-left: 300px;
       margin: 10px;
 
     }
@@ -773,11 +779,84 @@
 
     /* =============== Anciet book card section ============== */
 
+    @media (max-width: 1200px) {
+    .swiper {
+        height: 350px;
+    }
+
+    .cord {
+        width: 180px;
+        height: 270px;
+    }
+
+    .cord__image img {
+        width: 180px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .swiper {
+        height: 200px;
+        width: 200px;
+        /* padding: 6px; */
+    }
+
+    .cord {
+        width: 160px;
+        height: 240px;
+    }
+
+    .cord__image img {
+        width: 160px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .swiper {
+        height: 60px;
+        padding: 4px;
+    }
+
+    .cord {
+        width: 140px;
+        height: 20px;
+    }
+
+    .cord__image img {
+        width: 10px;
+        height: 10px;
+    }
+
+    
+
+}
+
+.Anci-b {
+    padding: 20px 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+.backg {
+    background-color: var(--bg-carolina-blue);
+}
 
     .swiper-wrapper {
       display: flex;
       flex-direction: row;
       align-items: center;
+      margin-left: 700px;
 
     }
 
@@ -797,7 +876,7 @@
       width: 1200px;
       height: 400px;
       /* margin: 10px; */
-      margin-left: 80px;
+      margin-left: 0px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -816,7 +895,7 @@
 
     .cord {
       width: 200px;
-      height: 300px;
+      height: 280px;
       background: hsla(222, 44%, 13%, 1);
       border-radius: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -835,6 +914,7 @@
 
     /* Card image */
     .cord__image img {
+ 
       width: 200px;
       height: 240px;
       object-fit: cover;
