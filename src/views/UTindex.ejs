@@ -1,120 +1,124 @@
-<%- include('./partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Truth</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  
+  <!-- Favicon and Icons -->
+  <link rel="icon" type="image/png" sizes="35x35" href="https://i.imgur.com/PMDKyca.png">
 
-<link rel="stylesheet" href="/css/style.css" />
-<section class="background">
-  <img src="/public/images/reaserch.png" class="r-image" alt="Research Image" />
-</section>
-<section class="info-container">
-  <div class="info">
-    <div class="info-child">
-      <h1>Universal truth</h1>
-      <span class="span">It's time for a great comeback</span>
-      <p class="text">Explore Indian Mystery and Harsh Truth</p>
+  
+  <!-- Include any other meta tags or links you need here -->
+</head>
+<body>
+  <%- include('./partials/header') %>
+
+  <section class="background" id="homepage">
+    <img src="https://i.imgur.com/j56TRx6.png" class="r-image" width="200px" alt="Research Image" />
+  </section>
+
+  <section class="info-container">
+    <div class="info">
+      <div class="info-child">
+        <h1>Universal truth</h1>
+        <span class="span">It's time for a great comeback</span>
+        <p class="text">Explore Indian Mystery and Harsh Truth</p>
+      </div>
     </div>
-    <button class="btn-primary">Explore Mystery</button>
-  </div>
-</section>
+  </section>
 
-<!--  section 1 compare vedic scince and morden science -->
-
- <!-- section 1 -->
-
- <!-- intro card -->
-
-
-<div class="introduction">
-  <div class="introcard">
-    <h4>This is comparison between Vedic and Modern Science</h4>
-  </div>
-</div>
-
-<h2>Modern Science and Ancient Science Compare</h2>
-
-<section class="compare">
-  <div class="compare-wrapper">
-    <% comparisons.forEach(comparison => { %>
-      
-      <a href="/api/comparisons/list/<%= comparison._id %>" id="<%= comparison._id %>">
-      <div class="compare-slide">
-        <div class="com">
-          <div class="com-image">
-            <img src="<%= comparison.mordenImage %>"
-              />
-          </div>
-          <div class="com_content">
-            <span class="com_title"><%= comparison.cardTitle %></span>
-       
-          </div>
-        </div>
-      </a>
-    
+  <!--  section 1 compare vedic science and modern science -->
+  <div class="introduction">
+    <div class="introcard">
+      <h4>This is comparison between Vedic and Modern Science</h4>
     </div>
-    <% } )%>  
   </div>
-</section>
-<div class="button-s">
-  <span class="btn-icon" id="left-btn">&#129128;</span>
-  <span class="btn-icon" id="right-btn">&#129130;</span>
-</div>
 
-<!-- Ancient Scientists Section -->
-<div class="introduction-2">
-  <div class="introcard-2">
-    <h4>Indian Ancient Scientists and Their Achievements</h4>
-  </div>
-</div>
+  <h2>Modern Science and Ancient Science Compare</h2>
 
-<h2>Ancient Scientists</h2>
-<section class="h-swiper">
-  <div class="h-swiper-wrapper">
-    
-    <% scientists.forEach(scientist => { %>
-      <li> <div class="h-swiper-slide">
-          <a href="/api/scientists/<%= scientist._id %>" id="<%= scientist._id %>">
-            <div class="card">
-              <div class="card_image">
-                <img src="<%= scientist.ScientistImage %>" alt="" />
+  <section class="compare" id="Compare">
+    <div class="compare-wrapper">
+      <% comparisons.forEach(comparison => { %>
+        <a href="/api/comparisons/list/<%= comparison._id %>" id="<%= comparison._id %>">
+          <div class="compare-slide">
+            <div class="com">
+              <div class="com-image">
+                <img src="<%= comparison.mordenImage %>" />
               </div>
-              <div class="card_content">
-                <span class="card_title"><%= scientist.name %></span>
-                <p class="card_text"><%= scientist.contribution  %></p>
+              <div class="com_content">
+                <span class="com_title"><%= comparison.cardTitle %></span>
               </div>
             </div>
-          </a>
-        </div>
-          </li>
-  <% }) %>
-  </div>
-  <div class="button-s">
-    <span class="btn-icon" id="left-btn2">&#129128;</span>
-    <span class="btn-icon" id="right-btn2">&#129130;</span>
-  </div>
-</section>
-
-<!-- Ancient Books Section -->
-<h3>Ancient Indian Books</h3>
-<section class="swiper mySwiper">
-  <i class="fa fa-angle-left" style="font-size:24px"></i>
-
-  <div class="swiper-wrapper">`
-    <% Books.forEach(book => { %>
-      <a href="/api/Books/list/<%= book._id %>"></a>
-      <div class="cord swiper-slide">
-      <div class="cord__image">
-        <img src="<%= book.BookImage %>" alt="card image" />
-      </div>
-      <div class="cord__content">
-        <span class="cord__title"><a href="/api/Books/list/<%= book._id%>"> <%= book.title %></a></span>
-      
-        <!-- <p class="cord__text"><%= book.BookInfo %></p>` -->
-      </div>
+          </div>
+        </a>
+      <% }) %>
     </div>
-    <% } )%>
-  </div>
-  <div class="button-B">
-    <span class="book-btn" id="leftenern-btn">&#129128;</span>
-    <span class="book-btn" id="rightist-btn">&#129130;</span>
-  </div>
-</section>
+  </section>
 
-<%-include('./partials/footer') %>
+  <div class="button-s">
+    <span class="btn-icon" id="left-btn">&#129128;</span>
+    <span class="btn-icon" id="right-btn">&#129130;</span>
+  </div>
+
+  <!-- Ancient Scientists Section -->
+  <div class="introduction-2" id="Scientists">
+    <div class="introcard-2">
+      <h4>Indian Ancient Scientists and Their Achievements</h4>
+    </div>
+  </div>
+
+  <h2>Ancient Scientists</h2>
+  <section class="h-swiper">
+    <div class="h-swiper-wrapper">
+      <% scientists.forEach(scientist => { %>
+        <li>
+          <div class="h-swiper-slide">
+            <a href="/api/scientists/<%= scientist._id %>" id="<%= scientist._id %>">
+              <div class="card">
+                <div class="card_image">
+                  <img src="<%= scientist.ScientistImage %>" alt="" />
+                </div>
+                <div class="card_content">
+                  <span class="card_title"><%= scientist.name %></span>
+                  <p class="card_text"><%= scientist.contribution %></p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+      <% }) %>
+    </div>
+    <div class="button-s">
+      <span class="btn-icon" id="left-btn2">&#129128;</span>
+      <span class="btn-icon" id="right-btn2">&#129130;</span>
+    </div>
+  </section>
+
+  <!-- Ancient Books Section -->
+  <h3>Ancient Indian Books</h3>
+  <section class="swiper mySwiper" id="AncientBook">
+    <i class="fa fa-angle-left" style="font-size:24px"></i>
+    <div class="swiper-wrapper">
+      <% Books.forEach(book => { %>
+        <a href="/api/Books/list/<%= book._id %>"></a>
+        <div class="cord swiper-slide">
+          <div class="cord__image">
+            <img src="<%= book.BookImage %>" alt="card image" />
+          </div>
+          <div class="cord__content">
+            <span class="cord__title"><a href="/api/Books/list/<%= book._id %>"> <%= book.title %></a></span>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <div class="button-B">
+      <span class="book-btn" id="leftenern-btn">&#129128;</span>
+      <span class="book-btn" id="rightist-btn">&#129130;</span>
+    </div>
+  </section>
+
+  <%- include('./partials/footer') %>
+</body>
+</html>

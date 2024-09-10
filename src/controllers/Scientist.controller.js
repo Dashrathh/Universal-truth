@@ -150,29 +150,35 @@ const scientistComment = asyncHandler(async (req, res) => {
     const { scientistId } = req.params;
     const { commentText } = req.body;
     
-    
-    // Ensure the user is authenticated
+    // Check if the user is logged in (authentication check)
     if (!req.user) {
-        throw new ApiError(401, "User not authenticated");
+        // If the user is not authenticated, redirect them to the login page with a message
+        return res.status(401).render('login', { errorMessage: "Please log in to post a comment" });
     }
-    
-    const userId = req.user._id;
-    console.log(userId);
 
+    const userId = req.user._id;
+
+    // Find the scientist
     const scientist = await Scientist.findById(scientistId);
     if (!scientist) {
-        throw new ApiError(404, "Scientist not found");
+        if (!req.user) {
+            return res.status(401).render('login', { errorMessage: "Please log in to post a comment" });
+        }
+        
     }
 
+    // Create a new comment and associate it with the user and scientist
     const comment = await Comment.create({
         owner: userId,
         commentText,
-         scientistId,
+        scientistId,
     });
 
-// app.use('/api/scientists', scientistRouter);
-    res.redirect('/api/scientists/'+ scientistId )
+    // Redirect to the same scientist's page after posting the comment
+    res.redirect(`/api/scientists/${scientistId}`);
 });
+
+
 
     //  get comment
 

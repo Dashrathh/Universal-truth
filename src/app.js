@@ -60,7 +60,21 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.get('/about', (req, res) => {
+  res.render('about');
+});
 
+// Contact Page Route
+app.get('/contact', (req, res) => {
+  res.render('contact');
+});
+
+// Contact Form Submission (Optional)
+app.post('/contact/submit', (req, res) => {
+  const { name, email, message } = req.body;
+  // Process the form data (e.g., send an email or save it in the database)
+  res.send('Thank you for contacting us!');
+});
 
 console.log(Scientist);
 

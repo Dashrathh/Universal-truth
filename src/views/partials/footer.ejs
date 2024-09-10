@@ -9,8 +9,7 @@
         // Wheel event to scroll horizontally
         scrollbar.addEventListener("wheel", (evt) => {
             evt.preventDefault();
-            scrollbar.scrollLeft += evt.deltaY;  // Use deltaY for vertical scroll
-            console.log("Wheel event triggered");
+            scrollbar.scrollLeft += evt.deltaY > 0 ? 100 : -100; // horizontal scroll by wheel
         });
 
         // Left button click event
@@ -25,16 +24,32 @@
             scrollbar.scrollLeft += 700;
         });
 
+        // Handle mobile swipe events
+        let isDown = false;
+        let startX, scrollLeft;
+
+        scrollbar.addEventListener('touchstart', (e) => {
+            isDown = true;
+            scrollbar.style.scrollBehavior = "auto"; // Disable smooth scroll for better swipe control
+            startX = e.touches[0].pageX - scrollbar.offsetLeft;
+            scrollLeft = scrollbar.scrollLeft;
+        });
+
+        scrollbar.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX - scrollbar.offsetLeft;
+            const walk = (x - startX); // Adjust swipe sensitivity
+            scrollbar.scrollLeft = scrollLeft - walk;
+        });
+
+        scrollbar.addEventListener('touchend', () => {
+            isDown = false;
+        });
+
         // Another swiper container
         let scrollContainer = document.querySelector(".h-swiper-wrapper");
         let leftbtn = document.getElementById("left-btn2");
         let rightbtn = document.getElementById("right-btn2");
-
-        // Scroll container wheel event
-        // scrollContainer.addEventListener("wheel", (evt) => {
-        //     evt.preventDefault();
-        //     scrollContainer.scrollLeft += evt.deltaY;
-        // });
 
         // Right button for second container
         rightbtn.addEventListener("click", () => {
@@ -47,9 +62,31 @@
             scrollContainer.style.scrollBehavior = "smooth";
             scrollContainer.scrollLeft -= 700;
         });
+
+        // Swipe functionality for second swiper
+        let isDownSwiper = false;
+        let startXSwiper, scrollLeftSwiper;
+
+        scrollContainer.addEventListener('touchstart', (e) => {
+            isDownSwiper = true;
+            scrollContainer.style.scrollBehavior = "auto"; // Disable smooth scroll for better swipe control
+            startXSwiper = e.touches[0].pageX - scrollContainer.offsetLeft;
+            scrollLeftSwiper = scrollContainer.scrollLeft;
+        });
+
+        scrollContainer.addEventListener('touchmove', (e) => {
+            if (!isDownSwiper) return;
+            const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+            const walk = (x - startXSwiper); // Adjust swipe sensitivity
+            scrollContainer.scrollLeft = scrollLeftSwiper - walk;
+        });
+
+        scrollContainer.addEventListener('touchend', () => {
+            isDownSwiper = false;
+        });
     </script>
 
-    <!-- Swiper JS Script -->
+    <!-- Swiper JS Script (No Changes) -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
@@ -71,4 +108,88 @@
         const sliderContainer = document.getElementById('swiper-wrapper');
         const rightBtn = document.getElementById('righttern-btn');
     </script>
+
+    <!-- footer.ejs -->
+<footer>
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2024 Universal Truth. All rights reserved.</p>
+      </div>
+    </div>
+
+    <script>app.use(express.static('public'));
+    </script>
+  </footer>
+  
+  <!-- Add styles for footer in your CSS file -->
+  <style>
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+  
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+  
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  
+    .footer-social {
+      margin: 15px 0;
+    }
+  
+    .social-icon img {
+      width: 24px;
+      height: 24px;
+      margin: 0 10px;
+    }
+  
+    .footer-copy p {
+      margin: 10px 0 0;
+    }
+  </style>
+
+  <script>document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+  
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+  
+      // Calculate header height
+      const headerOffset = document.querySelector('.header').offsetHeight;
+  
+      // Get the position of the target element
+      const elementPosition = targetElement.getBoundingClientRect().top;
+  
+      // Scroll to the position, adjusted for the header
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    });
+  });
+  </script>
+  
 </footer>
