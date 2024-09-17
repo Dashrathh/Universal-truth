@@ -58,6 +58,11 @@ const ScientistSchema = new Schema(
       type: String, // Typw of evidence, e.g., "photo"
       required: true,
     },
+    
+    refrence: {
+      type: String, // Typw of evidence, e.g., "photo"
+      required: false,
+    },
 
   },
   {
